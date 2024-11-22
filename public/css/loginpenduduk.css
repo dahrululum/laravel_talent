@@ -1,0 +1,69 @@
+.login-page {
+    background-image: url(../images/bg-login-4.jpg) !important;
+    background-position: center center !important;
+    background-repeat:  no-repeat !important;
+    background-attachment: fixed !important;
+    background-size:  cover !important;
+}
+
+.login-logo a, .register-logo a {
+    color: #ffffff !important;
+}
+
+.login-box, .register-box {
+    width: 100%;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+     
+     
+}
+.blur {
+    background: rgb(0 0 0 / 40%);
+    backdrop-filter: blur(6px);
+    
+    width: 100%;
+}
+
+.avatarImg {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    top: calc(-80px/2);
+    left: calc(50% - 40px);
+}
+
+.register-box, .login-box {
+   
+    border-radius: 10px;
+}
+
+.login-logo, .register-logo {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 0%;
+    font-weight: 300;
+    margin-top: 2%;
+}
+.login-logo, .register-logo h3{
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 0%;
+    font-weight: 300;
+    margin-top: 2%;
+}
+
+.login-box-body, .register-box-body {
+    background: #ffffff;
+    padding: 20px;
+    border-top: 0;
+    color: #000;
+}
+
+.login-box-msg, .register-box-msg {
+    margin: 0;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+}
