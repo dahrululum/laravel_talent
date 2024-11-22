@@ -104,6 +104,13 @@
             <i class="nav-icon fas fa-download"></i>  <p>GetData Kompetensi JPM</p>
         </a>
     </li> 
+    <!-- get indikatorbox per batch 22/11/2024 !-->
+    <li class="nav-item ">
+        <a class="nav-link <?php if(Request::segment(2)=='getdataindikatorbox' ){echo 'active';} ?>" href="<?= url('/admin/getdataindikatorbox'); ?>">
+            <i class="nav-icon fas fa-download"></i>  <p>GetData Indikator Box / Batch</p>
+        </a>
+    </li> 
+
     {{-- <li class="nav-item ">
         <a class="nav-link <?php if(Request::segment(2)=='instansi' or Request::segment(2)=='addinstansi' or Request::segment(2)=='editinstansi' ){echo 'active';} ?>" href="<?= url('/admin/instansi'); ?>">
             <i class="nav-icon fas fa-cubes"></i>  <p>Instansi </p>

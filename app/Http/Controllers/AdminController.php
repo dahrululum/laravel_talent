@@ -2103,6 +2103,49 @@ class AdminController extends Controller
                   ]);
                 }
     }
+    //new upgrade
+    //getdata indikatorbox per batch
+    //22.11.2024
+    public function getdataindikatorbox(Request $request)
+    {
+         if(Auth::guard('admin')->check()){  
+             $bio  = Auth::guard('admin')->user();    
+             $level=$bio->level;
+             
+             $api_peg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai/index");
+             $pegna = $api_peg->json();
+             $rspeg = collect($pegna);
+             $jmlpeg=collect($pegna)->count();  
+
+             $api_insta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi");
+             $instana = $api_insta->json();
+             $jmlpd=collect($instana)->count();
+
+
+
+             //$jmlpeg = IndikatorBox::orderby('nilai_tb','desc')->count();
+             $params = $request->query();
+             $models = DataKompetensi::paginate(10);     
+             //return view('/pelamar/datatable', compact('pelamars'));
+                 return view('admin.getdataindikatorbox' , [
+                     'layout'        => $this->layout,
+                      
+                     'params'        => $params,
+                     'model'        => $models,
+                     'jmlpeg'       => $jmlpeg,
+                     'jmlpd'        => $jmlpd,
+                    // 'queryna'       =>$models->dd(),
+                    
+                      
+             ]);
+         }else{
+                 return view('admin.login',[
+                     'layout' => $this->layout 
+                   ]);
+                 }
+ 
+    }
+
     public function postLogin(Request $request)
     {
         $this->validate($request, [

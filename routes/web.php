@@ -112,3 +112,6 @@ Route::get('admin/grafikkompetensi', [AdminController::class,'grafikkompetensi']
 Route::get('admin/rekapkompetensitalenta', [AdminController::class,'rekapkompetensitalenta'])->name('admin.rekapkompetensitalenta');
 Route::get('/admin/export_rekapkomptalenta', [AdminController::class,'exportrekapkomptalenta'])->name('admin.exportrekapkomptalenta');
 Route::get('admin/print_rekapkomptalenta', [AdminController::class,'printrekapkomptalenta'])->name('admin.printrekapkomptalenta');
+//22.11.2024
+Route::get('admin/getdataindikatorbox', [AdminController::class,'getdataindikatorbox'])->name('admin.getdataindikatorbox');
+Route::post('/admin/post-getdataindikatorbox', [AdminController::class,'postGetdataIndikatorBox']); 

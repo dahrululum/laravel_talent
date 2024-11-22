@@ -127,7 +127,21 @@
  
 
 @section('content')
- 
+ {{-- <div class="card card-dark">
+    <div class="card-header">
+        <h5>Download Indikator Box Per Batch</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-1 col-sm-1 col-1">
+                <a class="btn btn-app bg-success">
+                     
+                    <i class="fas fa-users"></i> Ques 1
+                  </a>     
+            </div>
+        </div>
+    </div>
+ </div> --}}
 <div class="card card-primary">
     <div class="card-header">
         <h2 class="card-title">
