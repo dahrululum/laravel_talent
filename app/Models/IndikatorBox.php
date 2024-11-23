@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 class IndikatorBox extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    //use SoftDeletes;
     protected $table = 'indikator_box';
     protected $fillable = [
         'id_instansi',
@@ -36,6 +36,7 @@ class IndikatorBox extends Model
         'nilai_tb',
         'uraian_tb',
         'ket',
+        
         
     ];
 

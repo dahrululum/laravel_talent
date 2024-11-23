@@ -2112,15 +2112,105 @@ class AdminController extends Controller
              $bio  = Auth::guard('admin')->user();    
              $level=$bio->level;
              
-             $api_peg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai/index");
-             $pegna = $api_peg->json();
-             $rspeg = collect($pegna);
-             $jmlpeg=collect($pegna)->count();  
+            
 
              $api_insta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi");
              $instana = $api_insta->json();
+             $rsinsta = collect($instana);
              $jmlpd=collect($instana)->count();
 
+             $chunk1 = $rsinsta->splice(0,32);
+             $chunk2 = $rsinsta->splice(0,40);
+             $chunk3 = $rsinsta->splice(0,30);
+             $chunk4 = $rsinsta->splice(0,38);
+             $chunk5 = $rsinsta->splice(0,60);
+             $chunk6 = $rsinsta->splice(0,40);
+            
+            //  //deklarasi totpegawai per que
+            //  $tp1=0;
+            //  $tp2=0;
+            //  $tp3=0;
+            //  $tp4=0;
+            //  $tp5=0;
+            //  $tp6=0;
+            //  $tp7=0;
+             
+            //  foreach($chunk6 as $skpd1){
+            //     $pd = (object) $skpd1;
+            //     $idinsta=$pd->id;
+            //     $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinsta");
+            //     $pegna = $respeg->json();
+            //     $jmlpeg=collect($pegna)->count();
+            //     $tp1=$tp1+$jmlpeg;
+               
+                
+            //  }
+            //  dd($tp1);
+            //  foreach($chunk2 as $skpd2){
+            //     $pd = (object) $skpd2;
+            //     $idinsta=$pd->id;
+            //     $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinsta");
+            //     $pegna = $respeg->json();
+            //     $jmlpeg=collect($pegna)->count();
+            //     $tp2=$tp2+$jmlpeg;
+               
+                
+            //  }
+            //  foreach($chunk3 as $skpd3){
+            //     $pd = (object) $skpd3;
+            //     $idinsta=$pd->id;
+            //     $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinsta");
+            //     $pegna = $respeg->json();
+            //     $jmlpeg=collect($pegna)->count();
+            //     $tp3=$tp3+$jmlpeg;
+               
+                
+            //  }
+            //  foreach($chunk4 as $skpd4){
+            //     $pd = (object) $skpd4;
+            //     $idinsta=$pd->id;
+            //     $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinsta");
+            //     $pegna = $respeg->json();
+            //     $jmlpeg=collect($pegna)->count();
+            //     $tp4=$tp4+$jmlpeg;
+               
+                
+            //  }
+            //  foreach($chunk5 as $skpd5){
+            //     $pd = (object) $skpd5;
+            //     $idinsta=$pd->id;
+            //     $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinsta");
+            //     $pegna = $respeg->json();
+            //     $jmlpeg=collect($pegna)->count();
+            //     $tp5=$tp5+$jmlpeg;
+               
+                
+            //  }
+            //  foreach($chunk6 as $skpd6){
+            //     $pd = (object) $skpd6;
+            //     $idinsta=$pd->id;
+            //     $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinsta");
+            //     $pegna = $respeg->json();
+            //     $jmlpeg=collect($pegna)->count();
+            //     $tp6=$tp6+$jmlpeg;
+               
+                
+            //  }
+            //  foreach($chunk7 as $skpd7){
+            //     $pd = (object) $skpd7;
+            //     $idinsta=$pd->id;
+            //     $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinsta");
+            //     $pegna = $respeg->json();
+            //     $jmlpeg=collect($pegna)->count();
+            //     $tp7=$tp7+$jmlpeg;
+               
+                
+            //  }
+            //  dd($tp1);
+            //  dd($tp2);
+            //  $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$id");
+            //  $pegna = $respeg->json();
+            //  $jmlpeg=collect($pegna)->count();  
 
 
              //$jmlpeg = IndikatorBox::orderby('nilai_tb','desc')->count();
@@ -2132,8 +2222,15 @@ class AdminController extends Controller
                       
                      'params'        => $params,
                      'model'        => $models,
-                     'jmlpeg'       => $jmlpeg,
+                     'allpd'        => $rsinsta,    
                      'jmlpd'        => $jmlpd,
+                     'chunk1'        => $chunk1,
+                     'chunk2'        => $chunk2,
+                     'chunk3'        => $chunk3,
+                     'chunk4'        => $chunk4,
+                     'chunk5'        => $chunk5,
+                     'chunk6'        => $chunk6,
+                     
                     // 'queryna'       =>$models->dd(),
                     
                       
@@ -2144,6 +2241,369 @@ class AdminController extends Controller
                    ]);
                  }
  
+    }
+    public function postGetdataIndikatorBox(Request $request)
+    {  
+        // dd($request);
+        // $api_insta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi");
+        // $instana = $api_insta->json();
+        // $jmlpd=collect($instana)->count();  
+        // $rsinsta = collect($instana);
+        //$rsinsta = collect($instana)->slice(0, 10);
+        
+       // dd($rsinsta);
+       //clear table indikator
+       //IndikatorBox::truncate();
+        //clear IB per PD
+       
+        $idpd= 1; 
+        $rsinsta=$request['que'];
+        $jmlpd=collect($rsinsta)->count();  
+
+        $idbatch=$request['idbatch'];
+
+         //clear IB per batch
+          $delIB = IndikatorBox::whereNull('ket')
+                                ->orwhere('ket',$idbatch)
+                                ->delete();
+        //$delIB = IndikatorBox::where('id_ques', $idbatch)->delete();
+
+         //loop PD
+       $jmlpeg=0;
+       $totpeg=0;
+       foreach($rsinsta as $skpd){
+            $pd = (object) $skpd;
+           //pegawai api
+           //$idinstansi= $request['idinstansi']; 
+            $idinstansi=$pd->id;       
+            $nminsta=Instansi::where('id', $idinstansi)->first();
+    
+            $api_peg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$idinstansi");
+            $pegna = $api_peg->json();
+            $rspeg = collect($pegna);
+            $jmlpeg=collect($pegna)->count();  
+            $totpeg=$totpeg+$jmlpeg;
+           
+            
+            //insert table indikator
+            
+            foreach($pegna as $pegs){
+                $peg =  (object) $pegs;
+                //nilai inov pres
+                $ins = IndikatorBox::create([ 
+                        'id_instansi'           => $peg->id_instansi,
+                        'nama_instansi'         => $nminsta->nama,
+                        'nip'                   => $peg->nip,
+                        'nama'                  => $peg->nama,
+                        'id_jabatan'            => $peg->id_jabatan,
+                        'nilai_skp'             => 0,
+                        'nilai_inovasi'         => 0,
+                        'nilai_prestasi'        => 0,
+                        'nilai_indisipliner'    => 0,
+                        'nilai_kompetensi'      => 0,
+                        'nilai_kualifikasi'     => 0,
+                        'nilai_riwayat_jabatan' => 0,
+                        'nilai_riwayat_diklat'  => 0,
+                        'nilai_kecerdasan'      => 0,
+                        'ket'                   => $idbatch
+                        
+                    
+                    ]);
+            
+            } 
+            //edit data indikator
+            $indbox= IndikatorBox::where('id_instansi',$idinstansi)->get();
+            if(!empty(count($indbox))){
+                foreach($indbox as $ib){
+                    $np = NilaiPotensi::where('nip',$ib->nip)->first();
+                    //SKP
+                    if($ib->detPeg->getSKP->kuadranKinerja == "SANGAT BAIK"){
+                        $nilaiskp=80;
+                    }elseif($ib->detPeg->getSKP->kuadranKinerja == "BAIK"){
+                        $nilaiskp=66;
+                    }elseif($ib->detPeg->getSKP->kuadranKinerja == "BUTUH PERBAIKAN"){
+                        $nilaiskp=33;
+                    }else{
+                        $nilaiskp=0;
+                    }
+                    //KUALIFIKASI
+                    $tkpend_terakhir=str_replace(['.','-'],'',$ib->detPeg->getKualifikasi->Pend_trakhir_Terakhir);
+                    if($tkpend_terakhir == "S3" ){
+                        $nilaikualifikasi=20;
+                    }elseif($tkpend_terakhir == "S2"){
+                        $nilaikualifikasi=15;
+                    }elseif(($tkpend_terakhir == "S1") or ($tkpend_terakhir == "DIV")  or ($tkpend_terakhir == "D4") or ($tkpend_terakhir == "SPG")){
+                        $nilaikualifikasi=10;
+                    }elseif(($tkpend_terakhir == "D3") or  ($tkpend_terakhir == "DIII")  or ($tkpend_terakhir == "SPK") ){
+                        $nilaikualifikasi=7.5;
+                    }else{
+                        $nilaikualifikasi=5;
+                    }
+
+                    //Riwayat Jabatan
+                    $thnayena=date('Y');
+                    $thncpns=substr($ib->nip, 8, 4);
+                    $thnjab=$thnayena-$thncpns;
+                    //$nilaijab=$thnjab;
+                    if($thnjab >= 20){
+                        $nilaijab=10;
+                    }elseif(($thnjab <= 19) && ($thnjab >= 10)){
+                        $nilaijab=6.6;
+                    }elseif(($thnjab <= 9) && ($thnjab >= 5)){
+                        $nilaijab=3.3;
+                    }elseif(($thnjab <= 4) && ($thnjab >= 1)){
+                        $nilaijab=1;
+                    }else{
+                        $nilaijab=0;
+                    }
+                    //riwayat Diklat
+                    $ds=sizeof($ib->detPeg->getDiklatStruktural);
+                    $df=sizeof($ib->detPeg->getDiklatFungsional);
+                    $dt=sizeof($ib->detPeg->getDiklatTeknis);
+
+                    if($ds == 0){$jds=0;}else{$jds=1;}
+                    if($df == 0){$jdf=0;}else{$jdf=1;}
+                    if($dt == 0){$jdt=0;}else{$jdt=1;}
+                    
+                    $totdik = $jds+$jdf+$jdt;
+                    if($totdik == 0){
+                        $nilaidiklat=0;
+                    }elseif($totdik == 1){
+                        $nilaidiklat=3.3;
+                    }elseif($totdik == 2){
+                        $nilaidiklat=6.6;
+                    }elseif($totdik == 3){
+                        $nilaidiklat=10;
+                    }
+
+                    //indisipliner
+                    $dis=sizeof($ib->detPeg->getIndispliner);
+                    $tkhukuman= $ib->detPeg->getIndispliner;
+                    
+                    $nilaiindisipliner=0;
+                    $idtkhukum="";
+                    if(!empty($ib->detPeg->getIndispliner)){
+                        //$idtkhukum=$tkhukuman->first() ;
+                        foreach($tkhukuman as $tkhuk){
+                        $idtkhukum=$tkhuk->id_tingkat_hukuman;
+
+                            if($tkhuk->id_tingkat_hukuman=="3"){
+                                $nilaiindisipliner = "-50";
+                            }elseif($tkhuk->id_tingkat_hukuman=="2"){
+                                $nilaiindisipliner = "-30";
+                            }elseif($tkhuk->id_tingkat_hukuman=="1"){
+                                $nilaiindisipliner = "-10";
+                            }else{
+                                $nilaiindisipliner="";
+                            }
+                        }
+                    
+
+
+                    } 
+                    //JPM
+                    $njpm=$ib->getJPM->kategori;
+                    if($njpm=="Memenuhi Syarat"){
+                        $nilaijpm=50;
+                    }elseif($njpm=="Masih Memenuhi Syarat"){
+                        $nilaijpm=30;
+                    }elseif($njpm=="Kurang Memenuhi Syarat"){
+                        $nilaijpm=10;
+                    }else{
+                        $nilaijpm=0;
+                    }
+                    //KecerdasanUmum
+                    $ncer=$ib->getCerdas->predikat;
+                    if($ncer=="Very Superior"){
+                        $nilaicer=10;
+                    }elseif($ncer=="Superior"){
+                        $nilaicer=7.5;
+                    }elseif($ncer=="High Average"){
+                        $nilaicer=5;
+                    }elseif($ncer=="Average"){
+                        $nilaicer=2.5;
+                    }elseif($ncer=="Low Average"){
+                        $nilaicer=1;
+                    }elseif($ncer=="Low"){
+                        $nilaicer=0.5;
+                    }else{
+                        $nilaicer=0;
+                    }
+                    //nilai import
+                    if(empty($np->nilai_inovasi)){
+                        $nilaiinovasi=0;
+                    }else{
+                        $nilaiinovasi=$np->nilai_inovasi;
+                    }
+                    if(empty($np->nilai_prestasi)){
+                        $nilaiprestasi=0;
+                    }else{
+                        $nilaiprestasi=$np->nilai_prestasi;
+                    }
+                    //sumbu x y
+                    $nilaiy=$nilaiskp+$nilaiinovasi+$nilaiprestasi+$nilaiindisipliner;
+                    
+                    $nilaix=$nilaijpm+$nilaikualifikasi+$nilaijab+$nilaidiklat+$nilaicer;
+    
+                    if(($nilaiy <= 34) and ($nilaix < 51)){
+                        $nilaitb="1";
+                        $stylena="bg-danger";
+                        $uraianna="Kinerja di bawah ekspektasi dan potensi rendah";
+                    }elseif(($nilaiy > 34 && $nilaiy < 67) and ($nilaix < 51)){
+                        $nilaitb="2";
+                        $stylena="bg-danger";
+                        $uraianna="Kinerja sesuai ekspektasi dan potensi rendah";
+                    }elseif(($nilaiy <= 34) and ($nilaix >= 51 && $nilaix < 81)){
+                        $nilaitb="3";
+                        $stylena="bg-danger";
+                        $uraianna="Kinerja di bawah ekspektasi dan potensi menengah";
+                    }elseif(($nilaiy >= 67) and ($nilaix < 51 )){
+                        $nilaitb="4";
+                        $stylena="bg-warning";
+                        $uraianna="Kinerja di atas ekspektasi dan potensi rendah";
+                    }elseif(($nilaiy > 34 && $nilaiy < 67) and ($nilaix >= 51 && $nilaix < 81)){
+                        $nilaitb="5";
+                        $stylena="bg-warning";
+                        $uraianna="Kinerja sesuai ekspektasi dan potensi menengah";
+                    }elseif(($nilaiy <= 34 ) and ($nilaix >= 81)){
+                        $nilaitb="6";
+                        $stylena="bg-warning";
+                        $uraianna="Kinerja di bawah ekspektasi dan potensi tinggi";
+                    }elseif(($nilaiy >= 67 ) and ($nilaix >= 51 && $nilaix < 81)){
+                        $nilaitb="7";
+                        $stylena="bg-success";
+                        $uraianna="Kinerja di atas ekspektasi dan potensi menengah";
+                    }elseif(($nilaiy > 34 && $nilaiy < 67 ) and ($nilaix >= 81 )){
+                        $nilaitb="8";
+                        $stylena="bg-success";
+                        $uraianna="Kinerja sesuai ekspektasi dan potensi tinggi";
+                    }elseif(($nilaiy >= 67 ) and ($nilaix >= 81)){
+                        $nilaitb="9";
+                        $stylena="bg-primary";
+                        $uraianna="Kinerja di atas ekspektasi dan potensi tinggi";
+                    }else{
+                        $nilaitb="0";
+                        $stylena="bg-danger";
+                        $uraianna="";
+                    }
+
+                    //cek jabatan
+                    $namajabatan    = strtoupper($ib->detPeg->JABATAN);
+                    $eselon         = strtoupper($ib->detPeg->ESELON);
+                    $jenisjabatan   = strtoupper($ib->detPeg->Jns_Jbtan);
+
+                    if(($eselon=="II-A") and  ($jenisjabatan=="STRUKTURAL")){
+                        $id_jenisjabatan="1";
+                    }elseif(($eselon=="II-B") and ($jenisjabatan=="STRUKTURAL")){
+                        $id_jenisjabatan="1";
+                    }elseif(($eselon=="III-A") and ($jenisjabatan=="STRUKTURAL")){
+                        $id_jenisjabatan="2";
+                    }elseif(($eselon=="III-B") and ($jenisjabatan=="STRUKTURAL")){
+                        $id_jenisjabatan="2";
+                    }elseif(($eselon=="IV-A") and ($jenisjabatan=="STRUKTURAL")){
+                        $id_jenisjabatan="3";
+                    }elseif(($eselon=="IV-B") and ($jenisjabatan=="STRUKTURAL")){
+                        $id_jenisjabatan="3";
+                    }elseif(($eselon=="NON ESELON") and ($jenisjabatan=="PELAKSANA")){
+                        $id_jenisjabatan="4";
+                    }elseif(($eselon=="NON ESELON") and ($jenisjabatan=="FUNGSIONAL")){
+                        $id_jenisjabatan="5";
+                    }else{
+                        $id_jenisjabatan="0";
+                    } 
+
+                    // //CEK Nilai Kinerja
+                    if ($np) {
+                        // Find and update the record in the IndikatorBox table
+                        $indikatorBox = IndikatorBox::where('nip', $np->nip)->first();
+                        
+                        
+                        
+                        if ($indikatorBox) {
+                            $indikatorBox->update([
+                                'id_jenis_jabatan'      => $id_jenisjabatan,
+                                'jenis_jabatan'         => $jenisjabatan,
+                                'eselon'                => $eselon,
+                                'jabatan'               => $namajabatan,
+                                'nilai_inovasi'         => $nilaiinovasi,
+                                'nilai_prestasi'        => $nilaiprestasi,
+                                'nilai_skp'             => $nilaiskp,
+                                'nilai_kualifikasi'     => $nilaikualifikasi,
+                                'nilai_riwayat_jabatan' => $nilaijab,
+                                'nilai_indisipliner'    => $nilaiindisipliner,
+                                'nilai_kompetensi'      => $nilaijpm,
+                                'nilai_riwayat_diklat'  => $nilaidiklat,
+                                'nilai_kecerdasan'      => $nilaicer,
+                                'nilai_x'               => $nilaix,
+                                'nilai_y'               => $nilaiy,
+                                'nilai_tb'              => $nilaitb,
+                                'uraian_tb'             => $uraianna,
+                            
+                                
+                            ]);
+                        }else{
+                            $indikatorBox->update([
+                                'id_jenis_jabatan'      => $id_jenisjabatan,
+                                'jenis_jabatan'         => $jenisjabatan,
+                                'eselon'                => $eselon,
+                                'jabatan'               => $namajabatan,
+                                'nilai_inovasi'         => $nilaiinovasi,
+                                'nilai_prestasi'        => $nilaiprestasi,
+                                'nilai_skp'             => $nilaiskp,
+                                'nilai_kualifikasi'     => $nilaikualifikasi,
+                                'nilai_riwayat_jabatan' => $nilaijab,
+                                'nilai_indisipliner'    => $nilaiindisipliner,
+                                'nilai_kompetensi'      => $nilaijpm,
+                                'nilai_riwayat_diklat'  => $nilaidiklat,
+                                'nilai_kecerdasan'      => $nilaicer,
+                                'nilai_x'               => $nilaix,
+                                'nilai_y'               => $nilaiy,
+                                'nilai_tb'              => $nilaitb,
+                                'uraian_tb'             => $uraianna,
+                                
+                            
+                            
+                            ]);
+                        }
+                    }else{
+                        $indikatorBox = IndikatorBox::where('nip', $ib->nip)->first();
+                        $indikatorBox->update([
+                            'id_jenis_jabatan'      => $id_jenisjabatan,
+                            'jenis_jabatan'         => $jenisjabatan,
+                            'eselon'                => $eselon,
+                            'jabatan'               => $namajabatan,
+                            'nilai_inovasi'         => $nilaiinovasi,
+                            'nilai_prestasi'        => $nilaiprestasi,
+                            'nilai_skp'             => $nilaiskp,
+                            'nilai_kualifikasi'     => $nilaikualifikasi,
+                            'nilai_riwayat_jabatan' => $nilaijab,
+                            'nilai_indisipliner'    => $nilaiindisipliner,
+                            'nilai_kompetensi'      => $nilaijpm,
+                            'nilai_riwayat_diklat'  => $nilaidiklat,
+                            'nilai_kecerdasan'      => $nilaicer,
+                            'nilai_x'               => $nilaix,
+                            'nilai_y'               => $nilaiy,
+                            'nilai_tb'              => $nilaitb,
+                            'uraian_tb'             => $uraianna,
+                        
+                            
+                        ]);
+                    }
+                }
+            
+            }
+       }
+
+
+        return response()->json(
+            [
+                'data'      =>$idpd,
+                'success'   =>true,
+                'message'   => 'batch: '.$idbatch. ' JmlPD: '.$jmlpd.' TotPeg: '.$totpeg,
+            ]
+        );
+
+
     }
 
     public function postLogin(Request $request)

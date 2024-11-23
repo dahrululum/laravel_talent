@@ -147,9 +147,9 @@
         <h2 class="card-title">
              Hello {{Auth::guard('admin')->user()->name}} :: {{$pd->nama}}
         </h2>
-        <div class="card-tools">
+        {{-- <div class="card-tools">
             <a href="#" class="btn btn-danger" id="getdataAll"> <i class="fas fa-1x fa-sync-alt"></i> Refresh All Data</a>
-        </div>
+        </div> --}}
     </div>
     <div class="card-body">
         <select id="idpd" name="idpd" class="form-control form-control-xs select2 " style="width: 100%;">

@@ -12,21 +12,26 @@
     $ ( function () {
         $('#tablena1').DataTable({ "pageLength": 10 });
     })
-    $("#getdataJPM").click(function(e){
+    $("#getbatch1").click(function(e){
             e.preventDefault();
-            alert("Proses GetData JPM akan segera berlangsung");
+            alert("Proses GetData Batch 1 akan segera berlangsung");
 
             var idinstansi = $("#idpd").val();
+            var idbatch = $(this).data("batch");
+            var que1 = $(this).data("que");
+            
             let token   = $("meta[name='csrf-token']").attr("content");
 
             $.ajax({
                 type: 'POST',
-                url: "{{url('admin/post-getdatakompetensi')}}",
+                url: "{{url('admin/post-getdataindikatorbox')}}",
                 async: true,  
                 //data: data,
                 data: {
                   
                     "idinstansi": idinstansi,
+                    "idbatch": idbatch,
+                    "que": que1,
                     "_token": token
                 },
                 beforeSend: function() {
@@ -36,14 +41,7 @@
                     alert("sukses "+response.message);
                     console.log(response.message);
                     $(".spinner-border").hide();
-                    // var appurl = {!! json_encode(url('/admin/detail_indikatorninebox')) !!};
-                    // var deturl = appurl+"/"+response.data;
-                    
-                    // $("#result").show();
-                    // $("#result").load(deturl, function() {
-                    //     //alert( "The last 25 entries in the feed have been loaded" );
-                    //     $(".spinner-border").hide();
-                    // });
+                   
                     window.location.reload();
                     //$("#resultna").show();
 
@@ -55,7 +53,217 @@
                 }
             });
 
-        });
+    });
+    $("#getbatch2").click(function(e){
+            e.preventDefault();
+            alert("Proses GetData Batch 2 akan segera berlangsung");
+
+            var idinstansi = $("#idpd").val();
+            var idbatch = $(this).data("batch");
+            var que2 = $(this).data("que");
+            
+            let token   = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/post-getdataindikatorbox')}}",
+                async: true,  
+                //data: data,
+                data: {
+                  
+                    "idinstansi": idinstansi,
+                    "idbatch": idbatch,
+                    "que": que2,
+                    "_token": token
+                },
+                beforeSend: function() {
+                    $(".spinner-border").show();
+                },
+                success: function (response) {
+                    alert("sukses "+response.message);
+                    console.log(response.message);
+                    $(".spinner-border").hide();
+                   
+                    window.location.reload();
+                    //$("#resultna").show();
+
+
+                }, 
+                error: function(xhr, status, error){
+                        alert('error '+error);
+                        
+                }
+            });
+
+    });
+    $("#getbatch3").click(function(e){
+            e.preventDefault();
+            alert("Proses GetData Batch 3 akan segera berlangsung");
+
+            var idinstansi = $("#idpd").val();
+            var idbatch = $(this).data("batch");
+            var que3 = $(this).data("que");
+            
+            let token   = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/post-getdataindikatorbox')}}",
+                async: true,  
+                //data: data,
+                data: {
+                  
+                    "idinstansi": idinstansi,
+                    "idbatch": idbatch,
+                    "que": que3,
+                    "_token": token
+                },
+                beforeSend: function() {
+                    $(".spinner-border").show();
+                },
+                success: function (response) {
+                    alert("sukses "+response.message);
+                    console.log(response.message);
+                    $(".spinner-border").hide();
+                   
+                    window.location.reload();
+                    //$("#resultna").show();
+
+
+                }, 
+                error: function(xhr, status, error){
+                        alert('error '+error);
+                        
+                }
+            });
+
+    });
+    $("#getbatch4").click(function(e){
+            e.preventDefault();
+            alert("Proses GetData Batch 4 akan segera berlangsung");
+
+            var idinstansi = $("#idpd").val();
+            var idbatch = $(this).data("batch");
+            var que4 = $(this).data("que");
+            
+            let token   = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/post-getdataindikatorbox')}}",
+                async: true,  
+                //data: data,
+                data: {
+                  
+                    "idinstansi": idinstansi,
+                    "idbatch": idbatch,
+                    "que": que4,
+                    "_token": token
+                },
+                beforeSend: function() {
+                    $(".spinner-border").show();
+                },
+                success: function (response) {
+                    alert("sukses "+response.message);
+                    console.log(response.message);
+                    $(".spinner-border").hide();
+                   
+                    window.location.reload();
+                    //$("#resultna").show();
+
+
+                }, 
+                error: function(xhr, status, error){
+                        alert('error '+error);
+                        
+                }
+            });
+
+    });
+    $("#getbatch5").click(function(e){
+            e.preventDefault();
+            alert("Proses GetData Batch 5 akan segera berlangsung");
+
+            var idinstansi = $("#idpd").val();
+            var idbatch = $(this).data("batch");
+            var que5 = $(this).data("que");
+            
+            let token   = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/post-getdataindikatorbox')}}",
+                async: true,  
+                //data: data,
+                data: {
+                  
+                    "idinstansi": idinstansi,
+                    "idbatch": idbatch,
+                    "que": que5,
+                    "_token": token
+                },
+                beforeSend: function() {
+                    $(".spinner-border").show();
+                },
+                success: function (response) {
+                    alert("sukses "+response.message);
+                    console.log(response.message);
+                    $(".spinner-border").hide();
+                   
+                    window.location.reload();
+                    //$("#resultna").show();
+
+
+                }, 
+                error: function(xhr, status, error){
+                        alert('error '+error);
+                        
+                }
+            });
+
+    });
+    $("#getbatch6").click(function(e){
+            e.preventDefault();
+            alert("Proses GetData Batch 6 akan segera berlangsung");
+
+            var idinstansi = $("#idpd").val();
+            var idbatch = $(this).data("batch");
+            var que6 = $(this).data("que");
+            
+            let token   = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/post-getdataindikatorbox')}}",
+                async: true,  
+                //data: data,
+                data: {
+                  
+                    "idinstansi": idinstansi,
+                    "idbatch": idbatch,
+                    "que": que6,
+                    "_token": token
+                },
+                beforeSend: function() {
+                    $(".spinner-border").show();
+                },
+                success: function (response) {
+                    alert("sukses "+response.message);
+                    console.log(response.message);
+                    $(".spinner-border").hide();
+                   
+                    window.location.reload();
+                    //$("#resultna").show();
+
+
+                }, 
+                error: function(xhr, status, error){
+                        alert('error '+error);
+                        
+                }
+            });
+
+    });
 </script>
 
 @endsection
@@ -72,32 +280,138 @@
             <h3 class="card-title">Get Data Indikator Box Per Batch</h3>
         </div>    
         <div class="card-body" >
+            <div class="row">
+                <div class="col-lg-2 col-2">
+                    <!-- small card -->
+                    <div class="small-box bg-primary">
+                      <div class="inner">
+                        <h5> 32 record PD </h5>
+        
+                        <p>BATCH 1</p>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </div>
+                      <a href="#" class="small-box-footer" id="getbatch1"  data-toggle="tooltip" data-placement="top" title="que1" data-que="{{ $chunk1 }}" data-batch="1">
+                        Import Data  <i class="fas fa-upload"></i>
+                      </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-2">
+                    <!-- small card -->
+                    <div class="small-box bg-fuchsia">
+                      <div class="inner">
+                        <h5>40 record PD</h5>
+        
+                        <p>BATCH 2</p>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </div>
+                      <a href="#" class="small-box-footer"  id="getbatch2"  data-toggle="tooltip" data-placement="top" title="que2" data-que="{{ $chunk2 }}" data-batch="2">
+                        Import Data  <i class="fas fa-upload"></i>
+                      </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-2">
+                    <!-- small card -->
+                    <div class="small-box bg-lightblue">
+                      <div class="inner">
+                        <h5>30 record PD</h5>
+        
+                        <p>BATCH 3</p>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </div>
+                      <a href="#" class="small-box-footer"  id="getbatch3"  data-toggle="tooltip" data-placement="top" title="que3" data-que="{{ $chunk3 }}" data-batch="3">
+                        Import Data  <i class="fas fa-upload"></i>
+                      </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-2">
+                    <!-- small card -->
+                    <div class="small-box bg-purple">
+                      <div class="inner">
+                        <h5>38 record PD</h5>
+        
+                        <p>BATCH 4</p>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </div>
+                      <a href="#" class="small-box-footer"  id="getbatch4"  data-toggle="tooltip" data-placement="top" title="que4" data-que="{{ $chunk4 }}" data-batch="4">
+                        Import Data  <i class="fas fa-upload"></i>
+                      </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-2">
+                    <!-- small card -->
+                    <div class="small-box bg-maroon">
+                      <div class="inner">
+                        <h5>60 record PD</h5>
+        
+                        <p>BATCH 5</p>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </div>
+                      <a href="#" class="small-box-footer"  id="getbatch5"  data-toggle="tooltip" data-placement="top" title="que5" data-que="{{ $chunk5 }}" data-batch="5">
+                        Import Data  <i class="fas fa-upload"></i>
+                      </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-2">
+                    <!-- small card -->
+                    <div class="small-box bg-olive">
+                      <div class="inner">
+                        <h5>17 record PD</h5>
+        
+                        <p>BATCH 6</p>
+                      </div>
+                      <div class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </div>
+                      <a href="#" class="small-box-footer"  id="getbatch6"  data-toggle="tooltip" data-placement="top" title="que6" data-que="{{ $chunk6 }}" data-batch="6">
+                        Import Data  <i class="fas fa-upload"></i>
+                      </a>
+                    </div>
+                </div>
+
+            </div>
             <div class="form-group row">
-                <label for="key" class="col-sm-2 col-form-label">Jumlah Pegawai  </label>
+                
+
+
+                <label for="key" class="col-sm-2 col-form-label">Jumlah Instansi  </label>
                 <div class=" col-form-label col-sm-2">
                     {{-- <input type="text" class="form-control mr-2" name="jmlpeg" id="jmlpeg" value="{{ $jmlpeg}}" readonly> --}}
-                    <b>{{ $jmlpeg}}</b> Orang
-                    
+                  
+                   {{$jmlpd}}
                 </div>
-                <div>Jml Insta : {{$jmlpd}}</div>
+                {{-- <div class="text-primary mb-2 border-bottom">  {{$chunk1}}</div> --}}
                 
-                 
-                    
+                {{-- <div class="text-primary mb-2 border-bottom"> {{$chunk1->count()}}</div>
+                <div class="text-danger mb-2 border-bottom">  {{$chunk2->count()}}</div>
+                <div class="text-info mb-2 border-bottom">  {{$chunk3->count()}}</div>
+                <div class="text-dark mb-2 border-bottom">  {{$chunk4->count()}}</div>
+                <div class="text-primary mb-2 border-bottom">  {{$chunk5->count()}}</div>
+                <div class="text-dark mb-2 border-bottom">  {{$chunk6->count()}}</div> --}}
+                
                              
-               
-                 
+                
             </div>
         </div>
-        <div class="card-footer">
+        {{-- <div class="card-footer">
             <div class="row">
                 <div class="col-lg-6">
-                    {{-- <a href="#" class="btn btn-danger" id="getdataApi"> <i class="fas fa-1x fa-sync-alt"></i> Get All Data</a> --}}
+                   
                     <button class="btn btn-success" type="submit" name="submit" value="1" id="getdataJPM">
                         <i class="fa fa-download"></i> Get Data
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
         
                    
     </div>
@@ -114,7 +428,7 @@
     </div>
     <div class="card card-info" id="resultna">
         <div class="card-header ">
-            <h3 class="card-title">Hasil Get Data Pegawai JPM  </h3>
+            <h3 class="card-title">Hasil Get Data Indikator Box per Batch  </h3>
         </div>
         <div class="card-body">
              
@@ -127,26 +441,26 @@
                             <th rowspan="2">No.</th>
                             <th rowspan="2">NIP / Nama Pegawai</th> 
                             <th rowspan="2">Instansi</th> 
-                            
-                            <th colspan="9" class="text-center">Standar Kompetensi Jabatan</th>
+                            <th rowspan="2">Jabatan</th> 
+                            <th colspan="9" class="text-center">Indikator</th>
                              
-                            <th rowspan="2" > Skor</th>
-                            <th rowspan="2" > JPM</th>
+                            <th rowspan="2" > Nilai X</th>
+                            <th rowspan="2" > Nilai Y</th>
                             
-                            <th rowspan="2">Keterangan</th>
+                            <th rowspan="2">Box</th>
                             <th rowspan="2">Proses</th>
                             
                           </tr>
                           <tr class="bg-navy disabled ">
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Integritas</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Kerjasama</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Komunikasi</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Orientasi <br> Pada Hasil</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Pelayanan Publik</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Pengembangan Diri <br>dan Orang Lain</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Mengelola Perubahan</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Pengambilan Keputusan</b></th>
-                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Perekat Bangsa</b></th> 
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">SKP</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Inovasi</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Prestasi</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Indisipliner</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Kompetensi</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Kualifikasi</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Riwayat Jabatan</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Riwayat Diklat</b></th>
+                            <th><b style="writing-mode: tb-rl; transform: rotate(-180deg);">Kecerdasan Umum</b></th> 
                           </tr>
                     </thead>
                     <tbody>
@@ -159,6 +473,7 @@
                             <tr>
                                 <td>{{ $no }}</td>
                                 <td class="small"> {{ $ib->nama }}  <span class="badge badge-dark">{{ $ib->nip }} </span>  </td>
+                                <td class="small">{{ $ib->instansi}} </td>
                                 <td class="small">{{ $ib->instansi}} </td>
                                 <td class="small text-center"> {{ $ib->nilai_integritas }} </td>
                                 <td class="small text-center"> {{ $ib->nilai_kerjasama }} </td>
