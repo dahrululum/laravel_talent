@@ -50,7 +50,7 @@ $nav_saran =  App\Models\CatNavigasi::Where('status','1')
     @if(!empty($nav_nilai))
     <li class="nav-item ">
         <a class="nav-link <?php if(Request::segment(1)=='nilai'  ){echo 'active';} ?>" href="<?= url('/nilai'); ?>">
-            <i class="nav-icon fa fa-edit"></i>  <p>Nilai Kotak Talenta  </p>
+            <i class="nav-icon fa fa-edit"></i>  <p class="font-weight-bold h6"> Kotak Talenta  </p>
         </a>
     </li>
     @endif
@@ -71,7 +71,7 @@ $nav_saran =  App\Models\CatNavigasi::Where('status','1')
     @if(!empty($nav_diagram))
     <li class="nav-item ">
         <a class="nav-link <?php if(Request::segment(1)=='webkomp'  ){echo 'active';} ?>" href="<?= url('/webkomp'); ?>">
-            <i class="nav-icon fa fa-edit"></i>  <p>Diagram Jaring laba-laba Kompetensi </p>
+            <i class="nav-icon fa fa-edit"></i>  <p>Diagram Jaring Laba-laba </p>
         </a>
     </li>
     @endif

@@ -31,6 +31,9 @@ use App\Http\Controllers\AdminController;
  Route::get('/webkomp', [SiteController::class,'webkomp']);
  Route::get('/deskkomp', [SiteController::class,'deskkomp']);
  Route::get('/saran', [SiteController::class,'sarankembang']);
+
+ Route::get('/talentabox_asn/{nip?}', [SiteController::class,'talentabox_asn']);
+ Route::get('/notif', [SiteController::class,'notif'])->name('notif');
  Route::get('/logout',[SiteController::class,'logout'] );
 
 //alternatif login

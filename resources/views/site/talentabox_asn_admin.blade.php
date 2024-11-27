@@ -1,4 +1,4 @@
-@extends('site.index_asn')
+@extends('site.index_asn_admin')
 
 @section('content')
 @if ($message = Session::get('success'))
@@ -14,12 +14,12 @@
             <div class="col-md-12">
                 <div class="card card-info ">
                      
-                    <div class="card-body border-top">
+                    <div class="card-body ">
                         <div class="small-box bg-light mb-4">
-                            <div class="inner">
+                            <div class="inner border">
                                 <h3>Kuadran Kotak Talenta Anda : {{ $indi->nilai_tb }} </h3>
                                 <p class="text-primary">{{ $indi->uraian_tb }}</p>
-                                </div>
+                            </div>
                         </div>
                         <div class="">
                             <div class="h4 text-center text-dark">
@@ -30,7 +30,7 @@
                             </div>
                         </div>            
                         <div>
-                            <table class="table table-bordered">
+                            <table class="table table-bordered table-sm">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>NO.</th>
@@ -99,8 +99,8 @@
 
                             </table>
 
-                        </div>     
-                        <div class=" bg-dark p-2"><h4>DESKRIPSI KOMPETENSI</h4></div>
+                        </div>    
+                        <div class=" bg-dark p-2"><h5>Deskripsi Kompetensi</h5></div>
                         <div>
                             <table border="0" class="table table-bordered table-sm p-2">
 
@@ -187,12 +187,70 @@
                                  
                              
                             </table>    
-                        </div>                   
-                        
+                        </div>   
+                        <!-- indikator !-->             
+                       
+                        <div class="bg-dark p-2 "><h5 class="text-capitalize">Tabel Nilai Indikator Talenta</h5></div>
+                        <div>
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>SKP</th>
+                                        <th>Inovasi</th>
+                                        <th>Prestasi</th>
+                                        <th>Indisipliner</th>
+                                        <th>Kompetensi</th>
+                                        <th>Kualifikasi</th>
+                                        <th>Riwayat Jabatan</th>
+                                        <th>Riwayat Diklat</th>
+                                        <th>Kecerdasan Umum</th>
+                                        <th>Nilai X</th>
+                                        <th>Nilai Y</th>
+                                       
+                                        <th class="col-2">Nilai TB</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     
+                                    <tr>
+                                         
+                                        <td class="font-weight-normal text-center ">{{ $indi->nilai_skp }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_inovasi }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_prestasi }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_indisipliner }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_kompetensi }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_kualifikasi }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_riwayat_jabatan }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_riwayat_diklat }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_kecerdasan }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_x }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_y }} </td>
+                                        <td class="font-weight-normal text-center">  {{ $indi->nilai_tb }} </td>
+                                      
+                                    </tr>
+                                  
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <!-- web !-->             
+                       
+                        <div class="bg-dark p-2 pagebreak1"><h5 class="text-capitalize">Diagram Jaring laba-laba Kompetensi</h5></div>
+                        <div class="border">
+                            <div id="radarchart"></div>
+                        </div>
+                           
                     </div>
                      
                      
-                     
+                    <div class=" ">
+                       
+                        <div class=" ">
+                            
+                        </div>
+                    </div> 
                     <div class="card-footer">
                       <p>
                          
@@ -205,5 +263,87 @@
             
         </div>
     </div>
+    <script src="{{ url('charts/highcharts.js') }}"></script>
+    <script src="{{ url('charts/highcharts-more.js') }}"></script>
+    <script src="{{ url('charts/modules/exporting.js') }}"></script>
+    <script src="{{ url('charts/modules/export-data.js') }}"></script>
+    <script src="{{ url('charts/modules/accessibility.js') }}"></script>
+    
+    <script>
+        Highcharts.chart('radarchart', {
+
+            chart: {
+                polar: true,
+                type: 'line'
+            },
+
+            accessibility: {
+                description: ''
+            },
+
+            title: {
+                text: 'DIAGRAM KOMPETENSI INDIVIDUAL  ',
+                x: -80
+            },
+
+            pane: {
+                size: '80%'
+            },
+
+            xAxis: {
+                categories: ['Integritas', 'Kerjasama', 'Komunikasi', 'Orientasi Pada Hasil', 'Pelayanan Publik ', 'Pengembangan diri dan Oranglain','Mengelola Perubahan','Pengambilan Keputusan','Perekat Bangsa'],
+                tickmarkPlacement: 'on',
+                lineWidth: 0
+            },
+
+            yAxis: {
+                gridLineInterpolation: 'polygon',
+                lineWidth: 0,
+                min: 0
+            },
+
+            tooltip: {
+                shared: true,
+                pointFormat: '<span style="color:{series.color}">{series.name}: <b> {point.y:,.0f}</b><br/>'
+            },
+
+            legend: {
+                align: 'right',
+                verticalAlign: 'middle',
+                layout: 'vertical'
+            },
+
+            series: [{
+                name: 'Standar',
+                data: [<?=$stk->integritas_level?>, <?=$stk->kerjasama_level?>, <?=$stk->komunikasi_level?>, <?=$stk->orientasi_level?>, <?=$stk->pelayanan_level?>, <?=$stk->pengembangan_level?>, <?=$stk->perubahan_level?>, <?=$stk->keputusan_level?>, <?=$stk->perekat_level?>],
+                pointPlacement: 'on'
+            }, {
+                name: 'Personal',
+                data: [<?=$datak->nilai_integritas?>, <?=$datak->nilai_kerjasama?>, <?=$datak->nilai_komunikasi?>, <?=$datak->nilai_orientasi?>, <?=$datak->nilai_pelayanan?>, <?=$datak->nilai_pengembangan?>, <?=$datak->nilai_perubahan?>, <?=$datak->nilai_keputusan?>, <?=$datak->nilai_perekat?>],
+                pointPlacement: 'on'
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            align: 'center',
+                            verticalAlign: 'bottom',
+                            layout: 'horizontal'
+                        },
+                        chart: {
+                                height: 300
+                            },
+                        pane: {
+                            size: '80%'
+                        }
+                    }
+                }]
+            }
+        });
+        </script>
 @endsection
  
