@@ -76,6 +76,9 @@
         
                    
     </div>
+    <div class="border bg-white my-2">
+        <img src="{{  asset('images/indikator_suksesor.png')  }}" alt="" class="col-md-4">
+     </div>
 </form>
     <?php 
      if(isset($_GET["submit"])){

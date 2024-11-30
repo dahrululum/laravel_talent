@@ -215,7 +215,7 @@
                                      
                                     <tr>
                                          
-                                        <td class="font-weight-normal text-center ">{{ $indi->nilai_skp }} </td>
+                                        <td class="font-weight-normal text-center">{{ $indi->nilai_skp }} </td>
                                         <td class="font-weight-normal text-center">  {{ $indi->nilai_inovasi }} </td>
                                         <td class="font-weight-normal text-center">  {{ $indi->nilai_prestasi }} </td>
                                         <td class="font-weight-normal text-center">  {{ $indi->nilai_indisipliner }} </td>
@@ -239,9 +239,188 @@
                        
                         <div class="bg-dark p-2 pagebreak1"><h5 class="text-capitalize">Diagram Jaring laba-laba Kompetensi</h5></div>
                         <div class="border">
-                            <div id="radarchart"></div>
+                            <div id="radarchart" ></div>
                         </div>
                            
+                        <!-- saran !-->
+                        <div class="bg-dark p-2 mt-4 "><h5 class="text-capitalize">Saran Pengembangan</h5></div>
+                        <div class="border">
+                            <div class="row p-3 ">
+                                <div class="col-sm-12 text-center  bg-primary ">
+                                    <div style="" class="text-center  p-1 text-uppercase  "><h5> <b>PROFIL KOMPETENSI </b></h5></div>
+                                </div>
+                                <div class="col-md-12 mb-0 p-0 ">
+                                    <table class="table table-sm table-bordered col-sm-12">
+                                        <thead>
+                                            <tr>
+                                                <th class="font-weight-bold text-center">NO.</th>
+                                                <th class="font-weight-bold text-center ">KOMPETENSI </th>
+                                                <th class="font-weight-bold text-center ">STANDARD</th>
+                                                <th class="font-weight-bold text-center ">PERSON</th>
+                                                <th class="font-weight-bold text-center ">GAP</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php  
+                                                $totkomp=0; 
+                                                $totskj=0;
+                                                $idkomp="";
+                                                $ketkomp="";
+                                            ?>
+                                        @foreach($refso as $rf)
+                                        <?php 
+                                            $totskj=$totskj+$stk->integritas_level;
+                                            if($rf->no_komp==1){
+                                                $nilaikomp=$datak->nilai_integritas;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==2){
+                                                $nilaikomp=$datak->nilai_kerjasama;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==3){
+                                                $nilaikomp=$datak->nilai_komunikasi;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==4){
+                                                $nilaikomp=$datak->nilai_orientasi;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==5){
+                                                $nilaikomp=$datak->nilai_pelayanan;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==6){
+                                                $nilaikomp=$datak->nilai_pengembangan;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==7){
+                                                $nilaikomp=$datak->nilai_perubahan;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==8){
+                                                $nilaikomp=$datak->nilai_keputusan;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            if($rf->no_komp==9){
+                                                $nilaikomp=$datak->nilai_perekat;
+                                                $gap=$nilaikomp-$stk->integritas_level;
+                                            }
+                                            $totnilai=$datak->nilai_integritas+$datak->nilai_kerjasama+$datak->nilai_komunikasi+$datak->nilai_orientasi+$datak->nilai_pelayanan+$datak->nilai_pengembangan+$datak->nilai_perubahan+$datak->nilai_keputusan+$datak->nilai_perekat;    
+                                        ?>
+                                        <tr>
+                                                <td class="text-center">{{ $rf->no_komp }}.</td>
+                                                <td class="">{{$rf->nama_kompetensi}}</td>
+                                                <td class="text-center">{{ $stk->integritas_level }}  </td>
+                                                <td class="text-center "> 
+                                                    
+                                                <?php
+                                                 
+                                                echo $nilaikomp;
+                                               
+    
+     
+                                                ?>       
+                                            
+                                                                          
+                                                </td>
+                                                <td valign="top" class="text-center " >
+                                                    <?php 
+                                                   
+                                                     echo $gap;    
+                                                     if($gap<0){
+                                                        $idkomp.=$rf->no_komp;
+                                                        $idkomp.=", ";
+                                                        $ketkomp.=$rf->desk_kompetensi;
+                                                        $ketkomp.=", ";
+                                                        //echo"<br>";
+                                                        //echo $ketkomp;
+                                                    }        
+                                                   
+                                                    ?>
+                                                </td>
+                                        </tr>
+                                         @endforeach
+                                         
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="text-center"> </td>
+                                                <td class="text-center">Total</td>
+                                                <td class="text-center">{{ $totskj }}</td>
+                                                <td class="text-center">{{ $totnilai }}</td>
+                                                <td class="text-center">
+                                                <?php 
+                                                     $ketsaran=rtrim($ketkomp, ', ');
+                                                      //   echo $ketsaran;
+                                                ?>    
+                                                </td>
+                                                
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="col-sm-8 mt-1 bg-light p-2 border">
+                                    <?php 
+                                        $njob=($totnilai/$totskj) * 100;    
+                                        $jpm=number_format($njob,2);
+                                        if($jpm < "68"){
+                                            $labeljpm="Kurang Memenuhi Syarat";
+                                            $mutu="Belum ";
+                                            $ketjpm="";
+                                            $cssna="text-danger";
+                                        }elseif($jpm >"68.00" and $jpm <= "79" ){
+                                            $labeljpm="Masih Memenuhi Syarat";
+                                            $mutu="Cukup ";
+                                            $ketjpm="";
+                                            $cssna="text-danger";
+                                        }elseif($jpm >= "80" ){
+                                            $labeljpm="Memenuhi Syarat";
+                                            $mutu="Sudah ";
+                                            $ketjpm="";
+                                            $cssna="text-primary";
+                                        }else{
+                                            $labeljpm="...";
+                                            $mutu="-";
+                                            $ketjpm="";
+                                        }
+                                    ?>
+                                    <b>JOB PER MATCH</b> : <span class="ml-2 h5 {{ $cssna }}">{{ number_format($njob,2) }}</span>  <span class="ml-3 h6  {{ $cssna }} font-italic">{{  $labeljpm }}</span> 
+                                </div>
+                                <div class=" col-md-12 mb-3 mt-2" >
+                                    <div class=" ">
+                                        <div class="col-md-12"><u>KATEGORI</u> </div> 
+                                        <div class="col-md-12 "><u>></u>  80% Kompetensi Standar Minimal SKJ : Memenuhi </div> 
+                                        
+                                        <div  class="col-md-12 ">79% - 68% Kompetensi Standar Minimal SKJ : Masih Memenuhi </div> 
+                                         
+                                        <div  class="col-md-12 ">< 68 Kompetensi Standar Minimal SKJ : Kurang Memenuhi </div>
+                                        
+                                    </div>
+                                 
+                                  
+                                </div>
+                                <div class="col-sm-12 text-center  p-1 text-uppercase   bg-primary ">
+                                    <h5> <b>SARAN PENGEMBANGAN </b></h5>
+                                </div>
+                                <div class="col-md-12 bg-white border p-2">
+                                    <b>Feedback :</b><br>
+                                    <p class="mt-1">Sdr/Sdr.  <b>{{ strtoupper($datak->nama) }}</b> {{ $mutu }} menampilkan hasil yang optimal pada seluruh aspek kompetensi yang dipersyaratkan. Peningkatan aspek kompetensi dapat dilakukan dengan melibatkan atasan yang kompeten dengan memberikan pembinaan serta couching akan membantu dalam pengembangan diri ybs.</p>
+                                    <p>&nbsp;</p>
+                                    @if(!empty($idkomp)) 
+                                    <b>Pengembangan kompetensi yang disarankan :</b><br>
+                                    <p class="mt-1">
+                                        Kepada Sdr/Sdri. <b>{{ $datak->nama }}</b> dapat disarankan untuk mengikuti pelatihan yang terkait dengan <b>{{ $ketsaran }}</b>   untuk meningkatkan kompetensinya.
+                                        </p>
+                                    
+                                   @endif
+                                    
+                                </div>
+                            
+    
+                            </div> 
+                        </div>
                     </div>
                      
                      
@@ -308,34 +487,43 @@
             },
 
             legend: {
-                align: 'right',
-                verticalAlign: 'middle',
-                layout: 'vertical'
+                align: 'center',
+                verticalAlign: 'bottom',
+                layout: 'horizontal'
             },
 
+            // series: [{
+            //     name: 'Standar',
+            //     data: [<?=$stk->integritas_level?>, <?=$stk->kerjasama_level?>, <?=$stk->komunikasi_level?>, <?=$stk->orientasi_level?>, <?=$stk->pelayanan_level?>, <?=$stk->pengembangan_level?>, <?=$stk->perubahan_level?>, <?=$stk->keputusan_level?>, <?=$stk->perekat_level?>],
+            //     pointPlacement: 'on'
+            // }, {
+            //     name: 'Personal',
+            //     data: [<?=$datak->nilai_integritas?>, <?=$datak->nilai_kerjasama?>, <?=$datak->nilai_komunikasi?>, <?=$datak->nilai_orientasi?>, <?=$datak->nilai_pelayanan?>, <?=$datak->nilai_pengembangan?>, <?=$datak->nilai_perubahan?>, <?=$datak->nilai_keputusan?>, <?=$datak->nilai_perekat?>],
+            //     pointPlacement: 'on'
+            // }],
             series: [{
                 name: 'Standar',
-                data: [<?=$stk->integritas_level?>, <?=$stk->kerjasama_level?>, <?=$stk->komunikasi_level?>, <?=$stk->orientasi_level?>, <?=$stk->pelayanan_level?>, <?=$stk->pengembangan_level?>, <?=$stk->perubahan_level?>, <?=$stk->keputusan_level?>, <?=$stk->perekat_level?>],
+                data: [{{ $stk->integritas_level }}, {{ $stk->kerjasama_level }}, {{ $stk->komunikasi_level }}, {{ $stk->orientasi_level }}, {{ $stk->pelayanan_level }}, {{ $stk->pengembangan_level }}, {{ $stk->perubahan_level }}, {{ $stk->keputusan_level }}, {{ $stk->perekat_level }}],
                 pointPlacement: 'on'
             }, {
                 name: 'Personal',
-                data: [<?=$datak->nilai_integritas?>, <?=$datak->nilai_kerjasama?>, <?=$datak->nilai_komunikasi?>, <?=$datak->nilai_orientasi?>, <?=$datak->nilai_pelayanan?>, <?=$datak->nilai_pengembangan?>, <?=$datak->nilai_perubahan?>, <?=$datak->nilai_keputusan?>, <?=$datak->nilai_perekat?>],
+                data: [{{ $datak->nilai_integritas }}, {{ $datak->nilai_kerjasama }}, {{ $datak->nilai_komunikasi }}, {{ $datak->nilai_orientasi }}, {{ $datak->nilai_pelayanan }}, {{ $datak->nilai_pengembangan }}, {{ $datak->nilai_perubahan }}, {{ $datak->nilai_keputusan }}, {{ $datak->nilai_perekat }}],
                 pointPlacement: 'on'
-            }],
+            }],    
 
             responsive: {
                 rules: [{
                     condition: {
-                        maxWidth: 500
+                        maxWidth: 600
                     },
                     chartOptions: {
                         legend: {
                             align: 'center',
-                            verticalAlign: 'bottom',
+                            verticalAlign: 'top',
                             layout: 'horizontal'
                         },
                         chart: {
-                                height: 300
+                                height: 400
                             },
                         pane: {
                             size: '80%'

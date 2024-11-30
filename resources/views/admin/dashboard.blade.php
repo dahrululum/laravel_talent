@@ -121,6 +121,8 @@ $jpwsbox9=App\Models\IndikatorBox::jpws($params,9)->count();
 $jpelbox9=App\Models\IndikatorBox::jpel($params,9)->count(); 
 $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count(); 
 //dd($jptbox1);
+
+$totbox=$box1+$box2+$box3+$box4+$box5+$box6+$box7+$box8+$box9;
 @endphp
 
   const ctx1 = document.getElementById('chartjpt');
@@ -198,7 +200,7 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-9 my-2">
-                        <canvas id="myChart" style="min-height: 420px; height: 420px; max-height: 420px; max-width: 100%;"></canvas>
+                        <canvas id="myChart" style="min-height: 620px; height: 620px; max-height: 620px; max-width: 100%;"></canvas>
                     </div>
                     <div class="col-sm-3">
                         {{-- <table class="table table-bordered table-sm">
@@ -285,8 +287,15 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                     <td>Box 9</td>
                                     <td class="text-center">{{ $box9 }}</td>
                                 </tr>
+                                <tr>
+                                    <td class="bg-navy text-center">Total</td>
+                                    <td class="text-center bg-navy">{{ $totbox }}</td>
+                                </tr>
                             </tbody>
                          </table>
+                         <div class="border">
+                            <img src="{{  asset('images/indikator_ninebox.png')  }}" alt="" class="col-12">
+                         </div>
                     </div>
                 </div>
                 
