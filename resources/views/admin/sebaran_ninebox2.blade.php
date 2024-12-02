@@ -619,7 +619,9 @@ $box9=App\Models\IndikatorBox::boxque($params,9)->count();
             
             
             
-            
+            <div class="border bg-white my-2">
+                <img src="{{  asset('images/indikator_rekomendasi.png')  }}" alt="" class="col-md-4">
+             </div>
 
     
         </div>               

@@ -118,3 +118,6 @@ Route::get('admin/print_rekapkomptalenta', [AdminController::class,'printrekapko
 //22.11.2024
 Route::get('admin/getdataindikatorbox', [AdminController::class,'getdataindikatorbox'])->name('admin.getdataindikatorbox');
 Route::post('/admin/post-getdataindikatorbox', [AdminController::class,'postGetdataIndikatorBox']); 
+//01122024
+Route::get('admin/navpeg/', [AdminController::class,'navpeg'])->name('navpeg');
+Route::get('admin/status-page-pegawai/', [AdminController::class,'navpeg_proses'])->name('navpeg_proses');

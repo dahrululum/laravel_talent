@@ -94,6 +94,8 @@
     
     @if(Auth::guard('admin')->user()->level=="1") 
     <li class="nav-header">UTILITAS</li>
+    <li class="nav-item mt-1 "><a class="nav-link <?php if(Request::segment(2)=='navpeg' or Request::segment(2)=='editnavpeg'){echo 'active';} ?>" href="<?= url('/admin/navpeg'); ?>"><i class="nav-icon fa fa-table"></i>  <p>Navigasi Pegawai </p></a></li>
+
     <li class="nav-item ">
         <a class="nav-link <?php if(Request::segment(2)=='getdatasimadig' ){echo 'active';} ?>" href="<?= url('/admin/getdatasimadig'); ?>">
             <i class="nav-icon fas fa-download"></i>  <p>GetData API Simadig</p>

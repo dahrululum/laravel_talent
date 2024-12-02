@@ -473,20 +473,20 @@
                             <tr>
                                 <td>{{ $no }}</td>
                                 <td class="small"> {{ $ib->nama }}  <span class="badge badge-dark">{{ $ib->nip }} </span>  </td>
-                                <td class="small">{{ $ib->instansi}} </td>
-                                <td class="small">{{ $ib->instansi}} </td>
-                                <td class="small text-center"> {{ $ib->nilai_integritas }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_kerjasama }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_komunikasi }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_pelayanan }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_pengembangan }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_orientasi }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_perubahan }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_keputusan }} </td>
-                                <td class="small text-center"> {{ $ib->nilai_perekat }} </td>
-                                <td class="small">{{ $ib->skor}} </td>
-                                <td class="small">{{ $ib->jpm}} </td>
-                                <td class="small">{{ $ib->kategori}} </td>
+                                <td class="small">{{ $ib->nama_instansi}} </td>
+                                <td class="small">{{ $ib->jabatan}} </td>
+                                <td class="small text-center"> {{ $ib->nilai_skp }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_inovasi }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_prestasi }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_indisipliner }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_kompetensi }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_kualifikasi }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_riwayat_jabatan }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_riwayat_diklat }} </td>
+                                <td class="small text-center"> {{ $ib->nilai_kecerdasan }} </td>
+                                <td class="small">{{ $ib->nilai_x}} </td>
+                                <td class="small">{{ $ib->nilai_y}} </td>
+                                <td class="small">{{ $ib->nilai_tb}} </td>
                                  
                                 <td class="small">Detail</td>
                             </tr>

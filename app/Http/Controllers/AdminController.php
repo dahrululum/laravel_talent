@@ -13,7 +13,9 @@ use Illuminate\Support\Collection;
 
 use App\Models\Admin;
 use App\Models\Refumum;
- 
+
+use App\Models\Sesi;
+use App\Models\Navpeg;
 use App\Models\NilaiPotensi;
 use App\Models\IndikatorBox;
 use App\Models\PegawaiSimadig;
@@ -2215,7 +2217,9 @@ class AdminController extends Controller
 
              //$jmlpeg = IndikatorBox::orderby('nilai_tb','desc')->count();
              $params = $request->query();
-             $models = DataKompetensi::paginate(10);     
+            //  $models = DataKompetensi::paginate(10);   
+            $models = IndikatorBox::paginate(10); 
+            
              //return view('/pelamar/datatable', compact('pelamars'));
                  return view('admin.getdataindikatorbox' , [
                      'layout'        => $this->layout,
@@ -2978,7 +2982,51 @@ class AdminController extends Controller
         
        
     }
-     
+    
+    //navpeg
+    //01 des 2024
+    public function navpeg(){
+        if(Auth::guard('admin')->check()){  
+            $sess = Sesi::all();
+            $navpeg = Navpeg::all();
+          
+             
+            //return view('/pelamar/datatable', compact('pelamars'));
+                return view('admin/navpeg' , [
+                    'layout'        => $this->layout,
+                    'allsesi'       => $sess,
+                    'navs'          => $navpeg,
+                    
+                    
+                     
+            ]);
+        }else{
+                return view('admin.login',[
+                    'layout' => $this->layout 
+                  ]);
+                }
+    }
+    public function navpeg_proses( request $request){
+       
+        $idna = $request->get('idna');
+        $sp = $request->get('statuspage');
+        if ($sp == "true") {
+            Navpeg::where('id', $idna)
+                ->update([
+                    'status' => 1,
+                ]);
+        } else {
+            Navpeg::where('id', $idna)
+                ->update([
+                    'status' => 2,
+                ]);
+        }
+
+        return response()->json(['success' => 'Halaman Pegawai Berhasil diedit']);
+
+
+    }
+
       
     //Utilitas 
     //19 September 2022

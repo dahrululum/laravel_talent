@@ -68,6 +68,13 @@ $nav_saran =  App\Models\CatNavigasi::Where('status','1')
         </a>
     </li>
     @endif
+    @if(!empty($nav_saran))
+    <li class="nav-item ">
+        <a class="nav-link <?php if(Request::segment(1)=='saran'  ){echo 'active';} ?>" href="<?= url('/saran'); ?>">
+            <i class="nav-icon fa fa-edit"></i>  <p>Profil Kompetensi dan Saran Pengembangan </p>
+        </a>
+    </li>
+    @endif
     @if(!empty($nav_diagram))
     <li class="nav-item ">
         <a class="nav-link <?php if(Request::segment(1)=='webkomp'  ){echo 'active';} ?>" href="<?= url('/webkomp'); ?>">
@@ -82,13 +89,7 @@ $nav_saran =  App\Models\CatNavigasi::Where('status','1')
         </a>
     </li>
     @endif
-    @if(!empty($nav_saran))
-    <li class="nav-item ">
-        <a class="nav-link <?php if(Request::segment(1)=='saran'  ){echo 'active';} ?>" href="<?= url('/saran'); ?>">
-            <i class="nav-icon fa fa-edit"></i>  <p>Saran Pengembangan </p>
-        </a>
-    </li>
-    @endif
+    
 
     <li class="nav-header">Keluar ?</li>
     <li class="nav-item ">
