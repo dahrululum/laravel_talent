@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
 
 use App\Models\Admin;
 use App\Models\Refumum;
-
+use App\Models\Refstandkom;
 use App\Models\Sesi;
 use App\Models\Navpeg;
 use App\Models\NilaiPotensi;
@@ -2035,6 +2035,20 @@ class AdminController extends Controller
                 $paramID=$params['idpd'];
             }
             $model=IndikatorBox::queryinsta($params)->latest()->paginate(10);
+
+            // $datakomp = DataKompetensi::where('nip',$bio->nip)->first();
+            // $skj = Reflevelkom::where('leveljab',$datakomp->levelskj)->first();
+            //refso
+            $deskso1 = Refstandkom::where('no_komp',1)->first();
+            $deskso2 = Refstandkom::where('no_komp',2)->first();
+            $deskso3 = Refstandkom::where('no_komp',3)->first();
+            $deskso4 = Refstandkom::where('no_komp',4)->first();
+            $deskso5 = Refstandkom::where('no_komp',5)->first();
+            $deskso6 = Refstandkom::where('no_komp',6)->first();
+            $deskso7 = Refstandkom::where('no_komp',7)->first();
+            $deskso8 = Refstandkom::where('no_komp',8)->first();
+            $deskso9 = Refstandkom::where('no_komp',9)->first();
+            
             //dd($queryIB);
             return view('admin/rekap_kompetensitalenta', [
                 'layout'        => $this->layout,
@@ -2047,7 +2061,17 @@ class AdminController extends Controller
                 'pd'            => $insta,
                 'selpd'         => $insta,
                 'idinsta'       => $paramID,
-                'arr_param'        => $arrpar,
+                'arr_param'     => $arrpar,
+                'deskso1'       => $deskso1,
+                'deskso2'       => $deskso2,
+                'deskso3'       => $deskso3,
+                'deskso4'       => $deskso4,
+                'deskso5'       => $deskso5,
+                'deskso6'       => $deskso6,
+                'deskso7'       => $deskso7,
+                'deskso8'       => $deskso8,
+                'deskso9'       => $deskso9,
+                 
                
     
             ]);

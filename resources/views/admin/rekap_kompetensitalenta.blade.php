@@ -158,16 +158,109 @@
                        
                 </thead>
                 <tbody class="small">
-                    <?php $no = 1; ?>
+                    <?php 
+                    $no = 1; 
+                    
+                    
+                    ?>
                     @foreach ($model as $ib)
+                    <?php 
+                    $idkomp='';
+                    $ketkomp='';
+
+                    $gap1=$ib->getKompetensi->nilai_integritas - $ib->getKompetensi->levelskj;
+                    $gap2=$ib->getKompetensi->nilai_kerjasama - $ib->getKompetensi->levelskj;
+                    $gap3=$ib->getKompetensi->nilai_komunikasi - $ib->getKompetensi->levelskj;
+                    $gap4=$ib->getKompetensi->nilai_orientasi - $ib->getKompetensi->levelskj;
+                    $gap5=$ib->getKompetensi->nilai_pelayanan - $ib->getKompetensi->levelskj;
+                    $gap6=$ib->getKompetensi->nilai_pengembangan - $ib->getKompetensi->levelskj;
+                    $gap7=$ib->getKompetensi->nilai_perubahan - $ib->getKompetensi->levelskj;
+                    $gap8=$ib->getKompetensi->nilai_keputusan - $ib->getKompetensi->levelskj;
+                    $gap9=$ib->getKompetensi->nilai_perekat - $ib->getKompetensi->levelskj;
+
+                    if($gap1<0){
+                        $idkomp.=$deskso1->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso1->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    } 
+                    if($gap2<0){
+                        $idkomp.=$deskso2->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso2->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    }  
+                    if($gap3<0){
+                        $idkomp.=$deskso3->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso3->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    }  
+                    if($gap4<0){
+                        $idkomp.=$deskso4->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso4->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    } 
+                    if($gap5<0){
+                        $idkomp.=$deskso5->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso5->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    } 
+                    if($gap6<0){
+                        $idkomp.=$deskso6->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso6->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    }  
+                    if($gap7<0){
+                        $idkomp.=$deskso7->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso7->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    } 
+                    if($gap8<0){
+                        $idkomp.=$deskso8->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso8->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    } 
+                    if($gap9<0){
+                        $idkomp.=$deskso9->no_komp;
+                        $idkomp.=", ";
+                        $ketkomp.=$deskso9->desk_kompetensi;
+                        $ketkomp.=", ";
+                        //echo"<br>";
+                        //echo $ketkomp;
+                    } 
+                    ?>
                     <tr>
                         <td>{{ $no }}</td>
                         <td>{{ $ib->nama }}</td>
                         <td>{{ $ib->nip }}</td>
                         <td>{{ $ib->detPeg->GOL }}</td>
-                        <td>{{ $ib->jabatan }}</td>
-                        <td class="text-center">{{ $ib->getKompetensi->levelskj }}</td>
-                        <td class="text-center">{{ $ib->getKompetensi->nilai_integritas }}</td>
+                        <td>{{ $ib->jabatan }}
+                            
+                        </td>
+                        <td class="text-center">{{ $ib->getKompetensi->levelskj }} </td>
+                        <td class="text-center">{{ $ib->getKompetensi->nilai_integritas }}   </td>
                         <td class="text-center">{{ $ib->getKompetensi->nilai_kerjasama }}</td>
                         <td class="text-center">{{ $ib->getKompetensi->nilai_komunikasi }}</td>
                         <td class="text-center">{{ $ib->getKompetensi->nilai_orientasi }}</td>
@@ -190,7 +283,12 @@
                         <td class="text-center">{{ $ib->nilai_x}}</td>
                         <td class="text-center">{{ $ib->nilai_y }}</td>
                         <td class="text-center">{{ $ib->nilai_tb }}</td>
-                        <td class="text-center">{{ $ib->uraian_tb }}</td>
+                        <td class="text-left">
+                            {{-- {{ $ib->uraian_tb }} --}}
+                            <div class="text-dark">
+                                {{ $ketkomp }}
+                            </div>
+                        </td>
                     </tr>
                     <?php $no++; ?>
                     @endforeach

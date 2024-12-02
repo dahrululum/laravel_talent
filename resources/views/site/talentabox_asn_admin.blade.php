@@ -353,7 +353,7 @@
                                                 <td class="text-center">
                                                 <?php 
                                                      $ketsaran=rtrim($ketkomp, ', ');
-                                                      //   echo $ketsaran;
+                                                     //   echo $ketsaran;
                                                 ?>    
                                                 </td>
                                                 
