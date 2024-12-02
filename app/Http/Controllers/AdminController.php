@@ -344,25 +344,27 @@ class AdminController extends Controller
           $rinsta = $resinsta->json();
           
           $skpd = $rinsta[0];
-          $selpd=collect($rinsta)->where('id',$id);
+          //$selpd=collect($rinsta)->where('id',$id);
 
-          
-            $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$id");
-            $pegna = $respeg->json();
-            $jmlpeg=collect($pegna)->count();  
+          $rspd= IndikatorBox::where('id_instansi',$id)->first();
+
+            // $respeg = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/pegawai&id_instansi=$id");
+            // $pegna = $respeg->json();
+            // $jmlpeg=collect($pegna)->count();  
 
             $indbox= IndikatorBox::where('id_instansi',$id)->get();
-
+            $jmlpeg= IndikatorBox::where('id_instansi',$id)->count();
             return view('admin/indikatorninebox' , [
                 'layout'    => $this->layout,
                 'allpd'     => $allpd,
                 'insta'     => $insta,
                 'pd'        => (object) $skpd,
-                'selpd'     => (object) $selpd[0],
+                // 'selpd'     => (object) $selpd[0],
                 'rinsta'    => $rinsta,
-               
+                'rspd'      => $rspd,
+                'selpd'     => $rspd,
                 'jmlpeg'    => $jmlpeg,
-                'pegna'     =>  $pegna,
+                // 'pegna'     =>  $pegna,
                 'indbox'    => $indbox,
                  
         ]);
@@ -1158,9 +1160,10 @@ class AdminController extends Controller
                 if(!empty($params['nip'])){$nip=$params['nip'];}else{$nip="";}
                 if(!empty($params['id_jenjab'])){$id_jenjab=$params['id_jenjab'];}else{$id_jenjab="";}
                 if(!empty($params['idpd'])){$idpd=$params['idpd'];}else{$idpd="";}
+                if(!empty($params['id_box'])){$id_box=$params['id_box'];}else{$id_box="";}
                 
 
-                $arrpar="?nama=".$nama."&nip=".$nip."&id_jenjab=".$id_jenjab."&idpd=".$idpd;
+                $arrpar="?nama=".$nama."&nip=".$nip."&id_jenjab=".$id_jenjab."&idpd=".$idpd."&id_box=".$id_box;
             
             }else{
                 $arrpar="";
@@ -2007,11 +2010,12 @@ class AdminController extends Controller
             // $model = $allIB->append($params);
             // //$allIB = $queryIB->get();
             if(!empty($params)){
-               
+                if(!empty($params['nama'])){$nama=$params['nama'];}else{$nama="";}
+                if(!empty($params['nip'])){$nip=$params['nip'];}else{$nip="";}
                 if(!empty($params['idpd'])){$idpd=$params['idpd'];}else{$idpd="";}
                 
 
-                $arrpar="?idpd=".$idpd;
+                $arrpar="?nama=".$nama."&nip=".$nip."&idpd=".$idpd;
             
             }else{
                 $arrpar="";

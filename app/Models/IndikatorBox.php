@@ -88,6 +88,11 @@ class IndikatorBox extends Model
                 $query->where('id_jenis_jabatan', '=', $params['id_jenjab']);
              
         }
+        if (@$params['id_box'] != null) {
+             
+                $query->where('nilai_tb', '=', $params['id_box']);
+             
+        }
 
        
 
@@ -100,6 +105,18 @@ class IndikatorBox extends Model
     public static function queryinsta($params = [])
     {
         $query = parent::query();
+        if (@$params['nama'] != null) {
+            
+                $query->where('nama', 'like', '%' . $params['nama'] . '%');
+           
+        }
+
+        if (@$params['nip'] != null) {
+             
+                $query->where('nip', '=', $params['nip']);
+             
+        }
+        
         if (@$params['idpd'] != null) {
                 $query->where('id_instansi', '=', $params['idpd']);
         }

@@ -41,7 +41,18 @@
         <form action="" method="get">
             <div class="card-body">
                 <div class="row">
-                   
+                    <div class="col-lg-2 border-right">
+                        <div class="form-group">
+                            <label for="">Nama Pegawai</label>
+                            <input type="text" class="form-control form-control-sm" id="nama" name="nama" value="{{ @$params['nama'] }}"   >
+                        </div>
+                    </div>
+                    <div class="col-lg-2 border-right">
+                        <div class="form-group">
+                            <label for="">NIP Pegawai</label>
+                            <input type="text" class="form-control form-control-sm" id="nip" name="nip"  value='{{ @$params['nip'] }}' >
+                        </div>
+                    </div>
                     <div class="col-lg-12 ">
                      
                         <div class="form-group">

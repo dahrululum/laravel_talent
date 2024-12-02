@@ -1,4 +1,4 @@
-<option value="{{$pd->id}}" <?php if($selpd->id==$pd->id){echo"selected";}?> @if(@$params['idpd']==$pd->id) selected @endif>
+<option value="{{$pd->id}}"   @if(@$params['idpd']==$pd->id) selected @endif>
     <?php 
         if($level!=0){
            

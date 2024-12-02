@@ -44,7 +44,7 @@
                             <input type="text" class="form-control form-control-sm" id="nip" name="nip"  value='{{ @$params['nip'] }}' >
                         </div>
                     </div>
-                    <div class="col-lg-3 border-right">
+                    <div class="col-lg-2 border-right">
                         <div class="form-group">
                             <label for="">Jenis Jabatan</label>
                             <select name="id_jenjab" id="id_jenjab" class="form-control form-control-sm">
@@ -58,7 +58,25 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-5 ">
+                    <div class="col-lg-2 border-right">
+                        <div class="form-group">
+                            <label for="" class="text-primary">Talent Box</label>
+                            <select name="id_box" id="id_box" class="form-control form-control-sm">
+                                <option value="">-- Pilih Talent Box --</option>
+                                <option value="1" @if(@$params['id_box']==1) selected @endif>Box 1</option>
+                                <option value="2" @if(@$params['id_box']==2) selected @endif>Box 2</option>
+                                <option value="3" @if(@$params['id_box']==3) selected @endif>Box 3</option>
+                                <option value="4" @if(@$params['id_box']==4) selected @endif>Box 4</option>
+                                <option value="5" @if(@$params['id_box']==5) selected @endif>Box 5</option>
+                                <option value="6" @if(@$params['id_box']==6) selected @endif>Box 6</option>
+                                <option value="7" @if(@$params['id_box']==7) selected @endif>Box 7</option>
+                                <option value="8" @if(@$params['id_box']==8) selected @endif>Box 8</option>
+                                <option value="9" @if(@$params['id_box']==9) selected @endif>Box 9</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ">
                         <div class="form-group">
                             <label for="">Instansi/Unit Kerja</label>
                              <select id="idpd" name="idpd" class="form-control form-control-sm select2 " style="width: 100%;">
