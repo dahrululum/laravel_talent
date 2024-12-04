@@ -267,8 +267,12 @@
                                             <td class="text-center">{{$ib->nilai_y}}</td>
                                             <td class="text-center p-2 mx-2"><div class="{{ $stylena }} text-center h3 p-2 ">{{ $nilaitb }}</div></td>
                                             <td class="text-center">
+                                                @if(Auth::guard('admin')->user()->level==1 )
                                                 <a class="btn btn-primary mx-1 my-1" href="{{ URL::to('/admin/editninebox/'.$ib->id) }}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i>  </a>
                                                 <a class="btn btn-danger mx-1 my-1" data-toggle="tooltip" data-placement="top" title="Delete" onClick="if(!confirm('Anda yakin Akan Hapus Data ini !'))return false;" href="{{ URL::to('/admin/delninebox/'.$ib->id) }}"><i class="fa fa-trash"></i>  </a>
+                                                @else
+                                                {{-- <span class="small text-danger"> Halaman khusus admin</span> --}}
+                                                @endif
                                             </td>
                                         </tr>
                                         

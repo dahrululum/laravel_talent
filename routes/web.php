@@ -69,6 +69,20 @@ Route::post('/admin/post-addoperator', [AdminController::class,'postAdduserop'])
 Route::get('/admin/editoperator/{id}',  [AdminController::class,'edituserop'])->name('admin.editop');
 Route::post('/admin/post-editoperator', [AdminController::class,'postEdituserop']); 
 
+//viewer
+Route::get('admin/viewer', [AdminController::class,'userviewer'])->name('admin.userviewer');
+Route::get('/admin/addviewer', [AdminController::class,'adduserviewer'])->name('admin.adduserviewer');
+Route::post('/admin/post-addviewer', [AdminController::class,'postAdduserviewer']); 
+Route::get('/admin/editviewer/{id}',  [AdminController::class,'edituserviewer'])->name('admin.editviewer');
+Route::post('/admin/post-editviewer', [AdminController::class,'postEdituserviewer']); 
+
+//resetpass user by ID
+Route::get('/admin/resetpass/{id}', [AdminController::class,'resetpass'])->name('admin.resetpass');
+Route::post('/admin/post-resetpass', [AdminController::class,'postResetpass']); 
+//changepass by auth
+Route::get('/admin/changepass', [AdminController::class,'changepass'])->name('admin.changepass');
+Route::post('/admin/post-changepass', [AdminController::class,'postChangepass']); 
+
 //pegawai
 //rev 13 des 2023
 Route::get('admin/pegawai', [AdminController::class,'pegawai'])->name('admin.pegawai');

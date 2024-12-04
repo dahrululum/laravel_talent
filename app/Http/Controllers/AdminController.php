@@ -54,7 +54,7 @@ class AdminController extends Controller
         if(Auth::guard('admin')->check()){  
             $bio  = Auth::guard('admin')->user();
             $level=$bio->level;
-            if($level==1){    
+             
                 //jml
                 $insta = instansi::get();
                 $box1 = IndikatorBox::where('nilai_tb',1)->count();
@@ -88,21 +88,7 @@ class AdminController extends Controller
 
                 
                 ]);
-            }else{
-
-                $insta = instansi::get();
-                $idinsta = $bio->id_instansi;
-
- 
-
-                return view('admin.dashboard_pd',[
-                'layout'        => $this->layout,
-                'bio'           =>$bio,
-                'insta'         => $insta,    
-               
-                
-                ]);
-            }
+             
           }
           return view('admin.login',[
             'layout' => $this->layout 
@@ -2798,6 +2784,47 @@ class AdminController extends Controller
               ]);
         }
     }
+    //resetpass user per ID
+    //04 des2024
+    public function resetpass($id)
+    {
+        if(Auth::guard('admin')->check()){ 
+
+            $bio  = Admin::where('id',$id)->first();
+
+             return view('admin/changepass',[
+                'layout' => $this->layout,
+                'user' =>$bio    
+                
+            ]);
+        }else{
+            return view('admin.login',[
+                'layout' => $this->layout 
+            ]);
+    }
+
+       // return view('register');
+    }
+    public function postResetpass(Request $request)
+    {  
+        if(Auth::guard('admin')->check()){      
+                 
+                $email=$request->input('email');
+                Admin::where('email', $email)
+                ->update([
+                    'password' => Hash::make($request['password'])
+                
+                ]);
+                
+        
+                return Redirect::to("/admin")->with('success',' Reset Password berhasil.');
+        }else{
+            return view('admin.login',[
+                'layout' => $this->layout 
+              ]);
+        }
+    }
+
     //operator
     public function userop(Request $request)
     {
@@ -2942,8 +2969,9 @@ class AdminController extends Controller
             'name' => $request['name'],
             'username' => $request['email'], 
             'email' => $request['email'],
+            'nip' => $request['nip'],
             'level' => $request['level'],
-            'id_instansi' => $request['instansi'],
+            
             'password' => Hash::make($request['password'])
           ]);
        
@@ -2971,7 +2999,7 @@ class AdminController extends Controller
                 Admin::where('email', $email)
                 ->update([
                     'name' => $request['name'],
-                    'id_instansi' => $request['instansi'],
+                    'nip' => $request['nip'],
                     'level' => $request['level'],
                 
                 

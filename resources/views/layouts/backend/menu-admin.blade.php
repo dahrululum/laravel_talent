@@ -140,8 +140,8 @@
         <ul class="nav nav-treeview">
            
             <li class="nav-item"><a class="nav-link <?php if(Request::segment(2)=='useradmin' or Request::segment(2)=='adduseradmin'){echo 'active';} ?>" href="<?= url('/admin/useradmin'); ?>"><i class="far fa-circle nav-icon"></i>  <p>Administrator</p></a></li>
-            <li class="nav-item"><a class="nav-link <?php if(Request::segment(2)=='operator' or Request::segment(2)=='addoperator' ){echo 'active';} ?>" href="<?= url('/admin/operator'); ?>"><i class="far fa-circle nav-icon"></i>  <p>Operator</p></a></li>
-            {{-- <li class="nav-item"><a class="nav-link <?php if(Request::segment(2)=='viewer' or Request::segment(2)=='addviewer' ){echo 'active';} ?>" href="<?= url('/admin/viewer'); ?>"><i class="far fa-circle nav-icon"></i>  <p>Viewer</p></a></li> --}}
+            {{-- <li class="nav-item"><a class="nav-link <?php if(Request::segment(2)=='operator' or Request::segment(2)=='addoperator' ){echo 'active';} ?>" href="<?= url('/admin/operator'); ?>"><i class="far fa-circle nav-icon"></i>  <p>Operator</p></a></li> --}}
+            <li class="nav-item"><a class="nav-link <?php if(Request::segment(2)=='viewer' or Request::segment(2)=='addviewer' ){echo 'active';} ?>" href="<?= url('/admin/viewer'); ?>"><i class="far fa-circle nav-icon"></i>  <p>Viewer/Pimpinan</p></a></li>
 
 
         </ul>

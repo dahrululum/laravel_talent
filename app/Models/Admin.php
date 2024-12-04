@@ -18,6 +18,7 @@ class Admin extends Authenticatable
         'level',
         'id_instansi',
         'nama_instansi',
+        'nip',
     ];
     public function hasInsta()
     {
