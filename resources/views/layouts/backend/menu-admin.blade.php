@@ -67,7 +67,7 @@
             <i class="nav-icon fas fa-table"></i>  <p>Modul Assessment</p>
         </a>
     </li>
-    <li class="nav-item ">
+    {{-- <li class="nav-item ">
         <a class="nav-link <?php if(Request::segment(2)=='refkom' ){echo 'active';} ?>" href="<?= url('/admin/refkom'); ?>">
             <i class="nav-icon fas fa-table"></i>  <p>Referensi Kompetensi Jabatan</p>
         </a>
@@ -76,7 +76,7 @@
         <a class="nav-link <?php if(Request::segment(2)=='standkom' ){echo 'active';} ?>" href="<?= url('/admin/standkom'); ?>">
             <i class="nav-icon fas fa-table"></i>  <p>Standar Kompetensi Jabatan </p>
         </a>
-    </li>
+    </li> --}}
     {{-- <li class="nav-header">Produk Ekraf</li>
     <li class="nav-item ">
         <a class="nav-link <?php if(Request::segment(2)=='msvar' or Request::segment(2)=='addmsvar' or Request::segment(2)=='editmsvar' ){echo 'active';} ?>" href="<?= url('/admin/msvar'); ?>">

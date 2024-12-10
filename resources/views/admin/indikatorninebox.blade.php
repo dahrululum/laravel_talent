@@ -406,7 +406,7 @@
                                         <div class="small">jenjab : {{ strtoupper($ib->detPeg->Jns_Jbtan)}}</div>
                                     </td>    
                                     <td class="text-center"> {{ $nilaiskp }} 
-                                        {{-- <i class="small text-primary">{{ $ib->detPeg->getSKP->kuadranKinerja }}</i> --}}
+                                        {{-- <i class="small text-primary">{{ $ib->detPeg->getSKP }}</i> --}}
                                     </td>
                                     <td> {{ $ib->nilai_inovasi }}</td>
                                     <td> {{ $ib->nilai_prestasi }}</td> 

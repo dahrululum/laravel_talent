@@ -26,9 +26,13 @@ class PegawaiSimadig extends Model
     {
         return $this->hasOne(JabatanSimadig::class, 'News_ID', 'News_ID')->where('Mulai','<>','')->orderby('Comment_ID','desc');
     }
-    public function getSKP()
+    public function getSKP_old()
     {
         return $this->hasOne(SkpSimadigBkn::class, 'id_pegawai', 'News_ID')->withDefault();
+    }
+    public function getSKP()
+    {
+        return $this->hasOne(SkpSimadigBkn::class, 'id_pegawai', 'News_ID')->orderby('tahun','desc')->withDefault();
     }
     public function getKualifikasi()
     {

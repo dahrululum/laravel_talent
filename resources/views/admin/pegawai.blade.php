@@ -253,7 +253,7 @@
                                             
                                             <td class="text-center">
                                                 <a  class="btn btn-info mx-1 my-1 btn-block" href="#modal_profil"  data-target="#modal_profil" data-toggle="modal" data-nip="{{$ib->nip}}" data-title="Profil Pegawai"><i class="fa fa-user"></i> Profil </a>
-                                                <a  class="btn btn-success mx-1 my-1 btn-block" href="<?= url('/talentabox_asn/'.$ib->nip); ?>" target="_blank" data-nip="{{$ib->nip}}" data-title="Kotak Talenta "><i class="fa fa-edit"></i> Kotak Talenta </a>
+                                                <a  class="btn btn-success mx-1 my-1 btn-block" href="<?= url('/talentabox_asn/'.$ib->nip); ?>" target="_blank" data-nip="{{$ib->nip}}" data-title="Kotak Talenta "><i class="fa fa-edit"></i> Profil Talenta </a>
                                                 {{-- <a class="btn btn-danger mx-1 my-1" data-toggle="tooltip" data-placement="top" title="Delete" onClick="if(!confirm('Anda yakin Akan Hapus Data ini !'))return false;" href="{{ URL::to('/admin/delninebox/'.$ib->id) }}"><i class="fa fa-trash"></i>  </a> --}}
                                             </td>
                                         </tr>
