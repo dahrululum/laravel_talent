@@ -8,12 +8,62 @@
 </div>
  
  @endif
+ <?php 
+ $urlfoto="https://simadig.babelprov.go.id/web/uploads/pegawai/berkas-foto/kecil/";
+ ?>
 <div class=" ">
     <div class="row justify-content-center p-1">
-                
+             
             <div class="col-md-12">
                 <div class="card card-info ">
-                     
+                    <div class="card-body">
+                         
+                           
+                            <div class="row border">
+                                <div class="bg-dark p-2 col-md-12"><h5 class="text-capitalize">Biodata   </h5></div>
+                                {{-- <div class="col-md-3 bg-white p-2">
+                                    @if(!empty($bio->detPeg->Berkas_foto))
+                                        <img src="{{ $urlfoto.$bio->detPeg->Berkas_foto }}" class="img-thumbnail rounded  " width="200px">
+                                        <div class="small">Nama file foto : {{ $bio->detPeg->Berkas_foto }}</div> 
+                                    @else
+                                        Null
+                                    @endif
+                                </div> --}}
+                                <div class="col-md-12 p-2">
+                                    <table class=" p-1">
+                                        <tr>
+                                            <td class="col-3 ">Nama</td>
+                                            <td class="col-1">:</td>
+                                            <td class="col-4">{{ $bio->nama }}</td> 
+                                            <td rowspan="4" class="bg-dark col-2 p-1" >@if(!empty($bio->detPeg->Berkas_foto))
+                                                <img src="{{ $urlfoto.$bio->detPeg->Berkas_foto }}" class="img-thumbnail rounded  " >
+                                                <div class="small">Nama file foto : {{ $bio->detPeg->Berkas_foto }}</div> 
+                                            @else
+                                                Null
+                                            @endif</td>   
+                                        </tr> 
+                                        <tr>
+                                            <td class="col-3 ">NIP</td>
+                                            <td class="col-1">:</td>
+                                            <td class="col-4">{{ $bio->nip }}</td>    
+                                        </tr>    
+                                        <tr>
+                                            <td class="col-3 ">Jabatan</td>
+                                            <td class="col-1">:</td>
+                                            <td class="col-6">{{ $bio->jabatan }}</td>    
+                                        </tr> 
+                                        <tr>
+                                            <td class="col-3 ">Instansi/Unit Kerja</td>
+                                            <td class="col-1">:</td>
+                                            <td class="col-6">{{ $indi->nama_instansi }}</td>    
+                                        </tr> 
+                                    </table>    
+                                </div>
+                                
+                                
+                            </div>
+                        
+                    </div>
                     <div class="card-body ">
                         <div class="small-box bg-light mb-4">
                             <div class="inner border">
