@@ -657,11 +657,14 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                         $strip = "--"; 
                                     ?>
                                     @foreach ($insta as $skpd)
+                                    @php 
+                                        $pd = (object) $skpd;
+                                    @endphp
                                     
                                     
                                     
                                         @include('admin/sel-pd-ninebox',[
-                                        'pd' => $skpd,
+                                        'pd' => $pd,
                                         'level' => $level,
                                         'strip' =>$strip,
                                         ])
@@ -727,7 +730,14 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
             //$idinsta=$params['idpd'];
 
             //print_r("idpd ".$idinsta);
-            
+             $tjbox1=0; 
+             $tjbox2=0; 
+             $tjbox3=0; 
+             $tjbox4=0; 
+             $tjbox5=0; 
+             $tjboxall=0; 
+             
+             
         ?>
             <div class="row align-items-center">
                 <div class="col-sm-5">
@@ -769,19 +779,22 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                     <th class="text-center">7</th>
                                     <th class="text-center">8</th>
                                     <th class="text-center">9</th>
+                                    <th class="text-center bg-dark">Total</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>JPT  </td>
+                                    
                                     @for ($i=1; $i<=9; $i++)
                                     <?php 
                                         $jbox1=App\Models\IndikatorBox::jpt($params,$i)->count(); 
+                                        $tjbox1=$tjbox1+$jbox1;
                                     ?>
                                         <td class="text-center">  {{ $jbox1 }}</td>
                                     @endfor
-                                    
+                                    <td class="text-center bg-dark"> {{ $tjbox1 }}  </td>
                                      
                             
                                 </tr>
@@ -789,11 +802,12 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                     <td>Administrator</td>
                                     @for ($i=1; $i<=9; $i++)
                                     <?php 
-                                       $jbox2=App\Models\IndikatorBox::jadm($params,$i)->count(); 
+                                       $jbox2=App\Models\IndikatorBox::jadm($params,$i)->count();
+                                       $tjbox2=$tjbox2+$jbox2; 
                                     ?>
                                         <td class="text-center"> {{ $jbox2 }}</td>
                                     @endfor
-                                     
+                                    <td class="text-center bg-dark"> {{ $tjbox2 }}  </td>
                             
                                 </tr>
                                 <tr>
@@ -801,9 +815,11 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                     @for ($i=1; $i<=9; $i++)
                                     <?php 
                                        $jbox3=App\Models\IndikatorBox::jpws($params,$i)->count(); 
+                                       $tjbox3=$tjbox3+$jbox3;
                                     ?>
                                         <td class="text-center"> {{ $jbox3 }}</td>
                                     @endfor
+                                    <td class="text-center bg-dark"> {{ $tjbox3 }}  </td>
                             
                                 </tr>
                                 <tr>
@@ -811,9 +827,11 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                     @for ($i=1; $i<=9; $i++)
                                     <?php 
                                         $jbox4=App\Models\IndikatorBox::jpel($params,$i)->count(); 
+                                        $tjbox4=$tjbox4+$jbox4;
                                     ?>
                                         <td class="text-center"> {{ $jbox4 }}</td>
                                     @endfor
+                                    <td class="text-center bg-dark"> {{ $tjbox4 }}  </td>
                             
                                 </tr>
                                 <tr>
@@ -822,11 +840,12 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                     <?php 
                                       
                                             $jbox5=App\Models\IndikatorBox::jfung($params,$i)->count(); 
+                                            $tjbox5=$tjbox5+$jbox5;
                                        
                                     ?>
                                         <td class="text-center"> {{ $jbox5 }}</td>
                                     @endfor
-                            
+                                    <td class="text-center bg-dark"> {{ $tjbox5 }}  </td>
                                 </tr>
                                  
                             </tbody>
@@ -846,7 +865,12 @@ $jfungbox9=App\Models\IndikatorBox::jfung($params,9)->count();
                                         <td class="text-center"> {{ $totbox }}</td>
                                     @endfor
                                  
-                                     
+                                     <td class="text-center "> 
+                                     <?php 
+                                           $tjboxall=$tjbox5+$tjbox4+$tjbox3+$tjbox2+$tjbox1;
+                                           echo $tjboxall;
+                                     ?>   
+                                     </td>
                                 </tr>
                             </tfoot>
                         </table>

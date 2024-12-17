@@ -1361,26 +1361,24 @@ class AdminController extends Controller
     //peta sebaran ninebox
     public function sebaranninebox(Request $request){
         //default id insta
+        $resallinsta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi");
+        $allpd = $resallinsta->json();
+            
+        //default id insta
         $idinsta=1;
-        
-        // $resallinsta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi");
-        // $allpd = $resallinsta->json();
-        
-        
 
-        // $insta = collect($allpd)->where(
-        // 'id_instansi_jenis',1)->where('status_aktif',1);
+        $insta = collect($allpd)->where('id_instansi_jenis',1)->where('status_aktif',1);
 
-        // $resinsta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi&id=$idinsta");
-        // $rinsta = $resinsta->json();
-        
-        // $skpd = $rinsta[0];
-        // $selpd=collect($rinsta)->where('id',$idinsta);
+        $resinsta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi&id=$idinsta");
+        $rinsta = $resinsta->json();
+            
+        $skpd = $rinsta[0];
+        $selpd=collect($rinsta)->where('id',$idinsta);
 
-        $allpd = Instansi::where('id_instansi_jenis',1)
-                  ->where('status_aktif',1)
-                  ->get();
-        $insta = Instansi::where('id',$idinsta)->first();
+        // $allpd = Instansi::where('id_instansi_jenis',1)
+        //           ->where('status_aktif',1)
+        //           ->get();
+        // $insta = Instansi::where('id',$idinsta)->first();
              
         //dd($allpd);
 
@@ -1416,9 +1414,9 @@ class AdminController extends Controller
             'jmlIB'         => $jmlIB,
             'params'        => $params,
             'allpd'         => $allpd,
-            'insta'         => $allpd,
-            'pd'            => $insta,
-            'selpd'         => $insta,
+            'insta'         => $insta,
+            'pd'            => (object) $skpd,
+            'selpd'         => (object) $selpd[0],
             'idinsta'       => $paramID,
             'queJPT1'          => $queJPT1,
             'jf1'              => $queJF1,
@@ -1539,12 +1537,30 @@ class AdminController extends Controller
             $bio  = Auth::guard('admin')->user();    
             $level=$bio->level;
             //$model = IndikatorBox::orderby('nilai_tb','desc')->paginate(10);
+            $resallinsta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi");
+            $allpd = $resallinsta->json();
+            
+            //default id insta
+            $idinsta=1;
+
+            $insta = collect($allpd)->where(
+            'id_instansi_jenis',1)->where('status_aktif',1);
+
+            $resinsta = Http::get("https://e-kinerja.babelprov.go.id/v1/index.php?r=api/instansi&id=$idinsta");
+            $rinsta = $resinsta->json();
+            
+            $skpd = $rinsta[0];
+            $selpd=collect($rinsta)->where('id',$idinsta);
+
+
             $params = $request->query();
             $queryIB = DataApiSimadig::search($params);
             $queryIB->latest();
            // $allIB = $queryIB->paginate(50); 
             //$model = $allIB->appends($params);
-            $model = $queryIB->get();
+            
+            //$model = $queryIB->get();
+             $model = $queryIB->get();
              
            
                 
@@ -1554,6 +1570,11 @@ class AdminController extends Controller
                     //'model'         =>  $allIB->appends($params),
                     'model'         => $model,
                     'params'        => $params,
+                    'allpd'         => $allpd,
+                    'insta'         => $insta,
+                    'pd'            => (object) $skpd,
+                    'selpd'         => (object) $selpd[0],
+                    
                     'queryna'       => $queryIB
                     
                      
@@ -1614,6 +1635,9 @@ class AdminController extends Controller
 
             DataApiSimadig::create([ 
                 'nip'                           => $peg->nip,
+                'id_instansi'                   => $peg->id_instansi,
+                'id_jenis_jabatan'              => $peg->id_jenis_jabatan,
+                'id_jabatan'                    => $peg->id_jabatan,
                 'data_talentabox'               => $peg->nilai_tb,
                 'data_api_pendidikan'           => $api_pend,
                 'data_api_jabatan'              => $api_jab,
@@ -1643,51 +1667,80 @@ class AdminController extends Controller
     {  
       
         //clear table api simadig
-        //DataApiSimadig::truncate();
+        DataApiSimadig::truncate();
         //$pegna = IndikatorBox::orderby('nilai_tb','desc')->get();
-        $pegna = IndikatorBox::where('id_instansi',1)    
-                ->orderby('nilai_tb','desc')
-                //->limit(10)
+        $pegna = IndikatorBox::orderby('nilai_tb','desc')
+                //->limit(100)
                 ->get();
         $jmlpeg = IndikatorBox::orderby('nilai_tb','desc')->count();
         //dd($pegna);
+        echo "jmlpeg: ".$jmlpeg."<br><br><hr> ";    
+        $no=0;
+
+        $chunks = $pegna->chunk(100);
+        //dd($chunks->all());
+        foreach($pegna as $peg){
+        $no++;
+        $api_pend = collect($peg->detPeg->getRiwayatPendidikan);
+        $api_jab = collect($peg->detPeg->getRiwayatJabatan);
+        $api_dt = collect($peg->detPeg->getRiwayatDT);
+        $api_df = collect($peg->detPeg->getRiwayatDF);
+        $api_latih = $api_dt." ".$api_df;
+        $api_sert = collect($peg->detPeg->getRiwayatSertifikasi);
+
+        $data[] = [
+            'nip'                           => $peg->nip,
+            'id_instansi'                   => $peg->id_instansi,
+            'id_jenis_jabatan'              => $peg->id_jenis_jabatan,
+            'id_jabatan'                    => $peg->id_jabatan,
+            'data_talentabox'               => $peg->nilai_tb,
+            'data_api_pendidikan'           => $api_pend,
+            'data_api_jabatan'              => $api_jab,
+            'data_api_pelatihan'            => $api_latih,
+            'data_api_diklat_teknis'        => $api_dt,
+            'data_api_diklat_fungsional'    => $api_df,
+            'data_api_sertifikasi'          => $api_sert,
+            'created_at'                    => now()->toDateTimeString(),
+            'updated_at'                    => now()->toDateTimeString(),
+        ];
+        // DataApiSimadig::insert([ 
+        //     'nip'                           => $peg->nip,
+        //     'id_instansi'                   => $peg->id_instansi,
+        //     'id_jenis_jabatan'              => $peg->id_jenis_jabatan,
+        //     'id_jabatan'                    => $peg->id_jabatan,
+        //     'data_talentabox'               => $peg->nilai_tb,
+        //     'data_api_pendidikan'           => $api_pend,
+        //     'data_api_jabatan'              => $api_jab,
+        //     'data_api_pelatihan'            => $api_latih,
+        //     'data_api_diklat_teknis'        => $api_dt,
+        //     'data_api_diklat_fungsional'    => $api_df,
+        //     'data_api_sertifikasi'          => $api_sert,
+        //     'created_at'                    => now()->toDateTimeString(),
+        //     'updated_at'                    => now()->toDateTimeString(),
+            
         
-       foreach($pegna as $peg){
-            // DataApiSimadig::create([ 
-            //     'nip'                       => $peg->nip,
-            //     'data_talentabox'           => $peg->nilai_tb,
-            //     'data_api_pendidikan'       => 0,
-            //     'data_api_jabatan'          => 0,
-            //     'data_api_pelatihan'        => 0,
-            //     'data_api_sertifikasi'      => 0,
+        // ]);
+        // print_r($data);
+
+        //echo "Data.".$data. "<hr>";
             
-            
-            // ]);
-            // $api_pend=IndikatorBox::getAllApiSimadig($peg->nip,"pendidikan");
-            // $api_jab=IndikatorBox::getAllApiSimadig($peg->nip,"jabatan");
-            // $api_latih=IndikatorBox::getAllApiSimadig($peg->nip,"pelatihan");
-           
-            // $api_sert=IndikatorBox::getAllApiSimadig($peg->nip,"sertifikasi");
-
-            $api_pend = collect($peg->detPeg->getRiwayatPendidikan);
-            $api_jab = collect($peg->detPeg->getRiwayatJabatan);
-            $api_dt = collect($peg->detPeg->getRiwayatDT);
-            $api_df = collect($peg->detPeg->getRiwayatDF);
-            $api_latih = $api_dt."<hr>".$api_df;
-            $api_sert = collect($peg->detPeg->getRiwayatSertifikasi);
-
-           
-
-            echo "NIP: ".$peg->nip."<br><hr>";
-            echo "Pend: ".$api_pend."<br><hr>";
-            echo "Jabatan : ".$api_jab."<br><hr>"; 
-            echo "Pelatihan : ".$api_latih."<br><hr>"; 
-            echo "Sertifikat : ".$api_sert."<br><hr>"; 
+            // echo "No.".$no. " NIP: ".$peg->nip."<br><hr>";
+            // echo "ID Instansi: ".$peg->id_instansi."<br> ";
+            // echo "Jenis Jabatan: ".$peg->id_jenis_jabatan."<br>";
+            // echo "Jabatan: ".$peg->id_jabatan."<br><hr>";
+            // echo "Pend: ".$api_pend."<br><hr>";
+            // echo "Jabatan : ".$api_jab."<br><hr>"; 
+            // echo "Pelatihan : ".$api_latih."<br><hr>"; 
+            // echo "Sertifikat : ".$api_sert."<br><hr>"; 
             
            
             
              
-        } 
+         } 
+
+         foreach(array_chunk($data,100) as $item){
+            DataApiSimadig::insert($item);
+         }
       
     }
     //18 nov 2023

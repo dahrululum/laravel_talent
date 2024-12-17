@@ -14,7 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"></script>
 <script> 
     $ ( function () {
-        $('#tablena').DataTable({ "pageLength": 10,  "paging": false });
+        $('#tablena').DataTable({ "pageLength": 10,  "paging": false, "searching": false, });
          $('.select2').select2();
     })
 </script>

@@ -2,14 +2,16 @@
 @section('styles')
   <!-- DataTables -->
   <link rel="stylesheet" href="{{url('lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+  <link rel="stylesheet" href="{{url('lte/plugins/select2/css/select2.min.css') }}">
 @endsection
 @section('javascripts')
 <!-- DataTables --> 
-
+<script src="{{ url('lte/plugins/select2/js/select2.full.js') }}"></script>
 <script src="{{url('lte/plugins/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{url('lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 <script> 
     $ ( function () {
+        $('.select2').select2();
         $('#tablena1').DataTable({ "pageLength": 50,
         order: [[11, 'desc']]
     });
@@ -58,7 +60,50 @@
                         </div>
                     </div>
                 </div>
-                    
+                <div class="row mt-4 mx-1">
+                    <div class="col-lg-2 border-right">
+                        <div class="form-group">
+                            <label for="">Jenis Jabatan</label>
+                            <select name="id_jenjab" id="id_jenjab" class="form-control form-control-sm">
+                                <option value="">--Pilih Jenis Jabatan--</option>
+                                <option value="1" @if(@$params['id_jenjab']==1) selected @endif>JPT</option>
+                                <option value="2" @if(@$params['id_jenjab']==2) selected @endif>Administrator</option>
+                                <option value="3" @if(@$params['id_jenjab']==3) selected @endif>Pengawas</option>
+                                <option value="4" @if(@$params['id_jenjab']==4) selected @endif>Pelaksana</option>
+                                <option value="5" @if(@$params['id_jenjab']==5) selected @endif>Fungsional</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 ">
+                        <div class="form-group">
+                            <label for="">Instansi/Unit Kerja</label>
+                             <select id="idpd" name="idpd" class="form-control form-control-sm select2 " style="width: 100%;">
+                             <option value=""  selected>Semua Instansi/Unit Kerja</option>
+                                <?php 
+                                        $level = 0;
+                                        $strip = "--"; 
+                                    ?>
+                                    @foreach ($insta as $skpd)
+                                    @php 
+                                        $pd = (object) $skpd;
+                                    @endphp
+                                    
+                                    
+                                        @include('admin/sel-pd-ninebox',[
+                                        'pd' => $pd,
+                                        'level' => $level,
+                                        'strip' =>$strip,
+                                        ])
+
+                                    
+                                    @endforeach
+
+                                
+                            </select>
+                        </div>
+                    </div>    
+                </div>    
                              
                
                  
@@ -90,7 +135,7 @@
             <h3 class="card-title">Hasil Pencarian Pegawai Potensi  {{ $key }}</h3>
         </div>
         <div class="card-body">
-            <div class="my-1 mx-2">Kata Kunci :  {{ @$params['key'] }}</div>
+            <div class="my-1 mx-2">Kata Kunci :  {{ @$params['key'] }}  </div>
             
             <div class="table-responsive p-1">
                         

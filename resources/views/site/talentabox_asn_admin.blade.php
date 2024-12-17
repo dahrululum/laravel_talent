@@ -10,7 +10,45 @@
  @endif
  <?php 
  $urlfoto="https://simadig.babelprov.go.id/web/uploads/pegawai/berkas-foto/kecil/";
+ $urlnofoto="https://primadona.babelprov.go.id/talent/public/images/nofoto.png";
+
+ $file_exist = @fopen($urlfoto.$bio->detPeg->Berkas_foto, 'r');
+
+//  $remote_file_url = $urlfoto.$bio->detPeg->Berkas_foto;
+
+// // Initialize a cURL session
+// $curl = curl_init($remote_file_url);
+
+// // Set CURLOPT_NOBODY true to exclude body from output
+// curl_setopt($curl, CURLOPT_NOBODY, true);
+
+// //Execute the current cURL session
+// curl_exec($curl);
+
+// // Get an HTTP response code
+// $response_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+// // Close cURL session
+// curl_close($curl);
+// echo $remote_file_url;
+// echo"<br>";
+// // Check if file exists on remote server
+// if($response_code == 200){
+//     echo 'Remote file exists.';
+// }else{
+//     echo 'Remote file is not found!';
+// }
+
  ?>
+ <style>
+.coverimg {
+    height: 120px;
+    padding:2px;
+    margin-top:0px;
+    overflow: hidden;
+}
+
+ </style>
 <div class=" ">
     <div class="row justify-content-center p-1">
              
@@ -29,33 +67,43 @@
                                         Null
                                     @endif
                                 </div> --}}
-                                <div class="col-md-12 p-2">
-                                    <table class=" p-1">
+                                <div class="col-md-12 p-1">
+                                    <table class="bg-white ">
                                         <tr>
-                                            <td class="col-3 ">Nama</td>
-                                            <td class="col-1">:</td>
-                                            <td class="col-4">{{ $bio->nama }}</td> 
-                                            <td rowspan="4" class="bg-dark col-2 p-1" >@if(!empty($bio->detPeg->Berkas_foto))
-                                                <img src="{{ $urlfoto.$bio->detPeg->Berkas_foto }}" class="img-thumbnail rounded  " >
-                                                <div class="small">Nama file foto : {{ $bio->detPeg->Berkas_foto }}</div> 
+                                            <td class="col-2 border-bottom">Nama</td>
+                                             
+                                            <td class="col-4  border-bottom">{{ $bio->nama }}</td> 
+                                            <td rowspan="4" class="col-1 p-1 border bg-light" >@if(!empty($bio->detPeg->Berkas_foto))
+                                                <div class="coverimg  ">
+                                                    
+                                                    {{-- @if($file_exist)
+                                                    aya
+                                                    @else
+                                                    eweh
+                                                    @endif --}}
+
+                                                    <img src="{{ $urlfoto.$bio->detPeg->Berkas_foto }}" class="img-fluid mx-auto d-block  " style="width:100px;" >
+                                                </div>
+                                                
+                                                {{-- <div class="small">Nama file foto : {{ $bio->detPeg->Berkas_foto }}</div>  --}}
                                             @else
-                                                Null
+                                            <img src="{{ $urlnofoto }}" class="img-thumbnail rounded  " >
                                             @endif</td>   
                                         </tr> 
                                         <tr>
-                                            <td class="col-3 ">NIP</td>
-                                            <td class="col-1">:</td>
-                                            <td class="col-4">{{ $bio->nip }}</td>    
+                                            <td class="col-2 border-bottom ">NIP</td>
+                                            
+                                            <td class="col-4  border-bottom">{{ $bio->nip }}</td>    
                                         </tr>    
                                         <tr>
-                                            <td class="col-3 ">Jabatan</td>
-                                            <td class="col-1">:</td>
-                                            <td class="col-6">{{ $bio->jabatan }}</td>    
+                                            <td class="col-2 border-bottom ">Jabatan</td>
+                                             
+                                            <td class="col-6 border-bottom">{{ $bio->jabatan }}</td>    
                                         </tr> 
                                         <tr>
-                                            <td class="col-3 ">Instansi/Unit Kerja</td>
-                                            <td class="col-1">:</td>
-                                            <td class="col-6">{{ $indi->nama_instansi }}</td>    
+                                            <td class="col-2 border-bottom ">Instansi/Unit Kerja</td>
+                                             
+                                            <td class="col-6 border-bottom">{{ $indi->nama_instansi }}</td>    
                                         </tr> 
                                     </table>    
                                 </div>
