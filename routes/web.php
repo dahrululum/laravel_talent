@@ -121,6 +121,12 @@ Route::get('admin/searchsuksesor', [AdminController::class,'searchsuksesor'])->n
 Route::get('admin/getdatasimadig', [AdminController::class,'getdatasimadig'])->name('admin.getdatasimadig');
 Route::post('/admin/post-getdatasimadig', [AdminController::class,'postGetDataSimadig']); 
 Route::get('/admin/get-getdatasimadig', [AdminController::class,'getGetDataSimadig']); 
+
+//modul private tuk refresh data
+//19des2024
+Route::get('/admin/refreshdatasimadig', [AdminController::class,'refreshDataSimadig']); 
+Route::get('/admin/refreshbatchindikator/{que?}', [AdminController::class,'refreshBatchIndikator']); 
+
 //Modul Report
 Route::get('/admin/get-getdatajpm', [AdminController::class,'getGetDataJPM']); 
 Route::get('admin/getdatakompetensi', [AdminController::class,'getdatakompetensi'])->name('admin.getdatakompetensi');

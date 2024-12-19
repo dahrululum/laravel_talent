@@ -98,7 +98,7 @@
                                         <tr>
                                             <td class="col-2 border-bottom ">Jabatan</td>
                                              
-                                            <td class="col-6 border-bottom">{{ $bio->jabatan }}</td>    
+                                            <td class="col-6 border-bottom">{{ strtoupper($bio->detPeg->JABATAN) }}</td>    
                                         </tr> 
                                         <tr>
                                             <td class="col-2 border-bottom ">Instansi/Unit Kerja</td>

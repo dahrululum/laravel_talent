@@ -55,7 +55,52 @@
                 }
             });
 
-        });
+    });
+    //refresh data, hanya update data talentbox
+    $("#refreshdataApi").click(function(e){
+            e.preventDefault();
+            alert("Proses Refresh Data API akan segera berlangsung");
+
+            var idinstansi = $("#idpd").val();
+            let token   = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('admin/post-refreshdatasimadig')}}",
+                async: true,  
+                //data: data,
+                data: {
+                  
+                    "idinstansi": idinstansi,
+                    "_token": token
+                },
+                beforeSend: function() {
+                    $(".spinner-border").show();
+                },
+                success: function (response) {
+                    alert("sukses "+response.message);
+                    console.log(response.message);
+                    $(".spinner-border").hide();
+                    // var appurl = {!! json_encode(url('/admin/detail_indikatorninebox')) !!};
+                    // var deturl = appurl+"/"+response.data;
+                    
+                    // $("#result").show();
+                    // $("#result").load(deturl, function() {
+                    //     //alert( "The last 25 entries in the feed have been loaded" );
+                    //     $(".spinner-border").hide();
+                    // });
+                    window.location.reload();
+                    //$("#resultna").show();
+
+
+                }, 
+                error: function(xhr, status, error){
+                        alert('error '+error);
+                        
+                }
+            });
+
+    });
 </script>
 
 @endsection
@@ -91,8 +136,11 @@
             <div class="row">
                 <div class="col-lg-6">
                     {{-- <a href="#" class="btn btn-danger" id="getdataApi"> <i class="fas fa-1x fa-sync-alt"></i> Get All Data</a> --}}
-                    <button class="btn btn-success" type="submit" name="submit" value="1" id="getdataApi">
+                    {{-- <button class="btn btn-success" type="submit" name="submit" value="1" id="getdataApi">
                         <i class="fa fa-download"></i> Get Data
+                    </button> --}}
+                    <button class="btn btn-success" type="submit" name="submit" value="1" id="refreshdataApi">
+                        <i class="fa fa-download"></i> Refresh Data
                     </button>
                 </div>
             </div>
@@ -125,11 +173,12 @@
                     <tr>
                         <th> No. </th>
                         <th> NIP </th>
+                        <th> Nama </th>
+                        <th> Instansi</th>
+                        <th> Jenis Jabatan</th>
+                        
                         <th> Talent Box </th>
-                        <th> Pendidikan</th>
-                        <th> Pengalaman Jabatan </th>
-                        <th> Pengalaman Pelatihan </th>
-                        <th> Sertifikasi Kompetensi </th>
+                        <th> Detail  </th>
                         <th> # </th>
                      
                     </tr>
@@ -184,12 +233,31 @@
                             <tr>
                                 <td>{{ $no }}</td>
                                 <td class="small"> {{ $ib->nip }}  </td>
+                                <td class="small"> {{ $ib->detPeg->NAMA }}</td>
+                                
+                                <td class="small"> {{ $ib->detInd->nama_instansi }}</td>
+                                <td class="small">
+                                    
+                                    @if($ib->id_jenis_jabatan==1)
+                                        JPT
+                                    @elseif ($ib->id_jenis_jabatan==2)
+                                        Administrator
+                                    @elseif ($ib->id_jenis_jabatan==3)
+                                        Pengawas
+                                    @elseif ($ib->id_jenis_jabatan==4)
+                                        Pelaksana
+                                    @elseif ($ib->id_jenis_jabatan==5)
+                                        Fungsional
+                                    @else
+                                        -
+                                    @endif
+                                    
+                                </td>
+                                
                                 <td class="small text-center"> {{ $ib->data_talentabox }} </td>
-                                <td class="small">{{ $ib->data_api_pendidikan}} </td>
-                                <td class="small">{{ $ib->data_api_jabatan}} </td>
-                                <td class="small"> {{ $ib->data_api_pelatihan}}</td>
-                                <td class="small" > {{ $ib->data_api_sertifikasi}}</td>
+                                 
                                 <td class="small">Detail</td>
+                                <td class="small">   </td>
                             </tr>
                             
 

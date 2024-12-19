@@ -42,11 +42,11 @@
                         
                             
                         <div class="row p-3">
-                            <div class="col-sm-11 text-center  bg-primary ">
+                            <div class="col-sm-12 text-center  bg-primary ">
                                 <div style="" class="text-center  p-2 text-uppercase  "><h4> <b>PROFIL KOMPETENSI </b></h4></div>
                             </div>
                             <div class="col-md-12 mb-0 p-0 ">
-                                <table class="table table-xs table-bordered col-sm-11">
+                                <table class="table table-xs table-bordered col-sm-12">
                                     <thead>
                                         <tr>
                                             <th class="font-weight-bold text-center">NO.</th>
@@ -239,6 +239,96 @@
                                 </div>
                              
                               
+                            </div>
+                            <div class="col-sm-12 text-center  bg-primary ">
+                                <div style="" class="text-center  p-1 text-uppercase  "><h5> <b>DESKRIPSI KOMPETENSI </b></h5></div>
+                            </div>
+                            <div>
+                                <table border="0" class="table table-bordered table-sm p-2">
+
+                                    
+                                    <tr class=" ">
+                                        <td align="center" colspan="2" class="text-uppercase font-weight-bold">Kompetensi</td>
+                                        
+                                        <td align="center" class="text-uppercase font-weight-bold">Level</td>
+                                        <td align="center" class="text-uppercase font-weight-bold">Deskripsi</td>
+                                    </tr>
+                                    <tr class="bg-white">
+                                        <td align="" colspan="4" class="text-uppercase font-weight-bold">MANAJERIAL</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td align="center" width="40">1.</td> 
+                                        <td class="font-weight-normal" >Integritas</td>
+                                        <td align="center">{{ $datak->nilai_integritas }}</td>
+                                        <td align=""> {{ $desk1->desk_level }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">2.</td> 
+                                        <td class="font-weight-normal">Kerjasama</td>
+                                        
+                                        <td align="center">{{ $datak->nilai_kerjasama }}</td>
+                                        <td align="">{{ $desk2->desk_level }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">3.</td> 
+                                        <td class="font-weight-normal">Komunikasi </td>
+                                        
+                                        <td align="center">{{ $datak->nilai_komunikasi }}</td>
+                                        <td align="">{{ $desk3->desk_level }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" width="40">4.</td> 
+                                        <td class="font-weight-normal" >Orientasi Pada Hasil</td>
+                                        
+                                        <td align="center">{{ $datak->nilai_orientasi }}</td>
+                                        <td align="">{{ $desk4->desk_level }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">5.</td> 
+                                        <td class="font-weight-normal">Pelayanan publik </td>
+                                        
+                                        <td align="center">{{ $datak->nilai_pelayanan }}</td>
+                                        <td align="">{{ $desk5->desk_level }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">6.</td> 
+                                        <td class="font-weight-normal">Pengembangan diri dan oranglain </td>
+                                        
+                                        <td align="center">{{ $datak->nilai_pengembangan }}</td>
+                                        <td align="">{{ $desk6->desk_level }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" width="40">7.</td> 
+                                        <td class="font-weight-normal" >Mengelola perubahan </td>
+                                        
+                                        <td align="center">{{ $datak->nilai_perubahan }}</td>
+                                        <td align="">{{ $desk7->desk_level }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">8.</td> 
+                                        <td class="font-weight-normal">Pengambilan keputusan </td>
+                                        
+                                        <td align="center">{{ $datak->nilai_keputusan }}</td>
+                                        <td align="">{{ $desk8->desk_level }}</td>
+                                    </tr>
+                                    <tr class="bg-white">
+                                        <td align="" colspan="4" class="text-uppercase font-weight-bold">SOSIAL KULTURAL</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td align="center">9.</td> 
+                                        <td class="font-weight-normal">Perekat Bangsa</td>
+                                        
+                                        <td align="center">{{ $datak->nilai_perekat }}</td>
+                                        <td align="">{{ $desk9->desk_level }}</td>
+                                    </tr>
+                                    
+                                    
+                                    
+                                    
+                                
+                                </table>  
                             </div>
                             <div class="col-sm-12 text-center  p-2 text-uppercase   bg-primary ">
                                 <h4> <b>SARAN PENGEMBANGAN </b></h4>

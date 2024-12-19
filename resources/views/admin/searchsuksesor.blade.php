@@ -224,29 +224,29 @@
                             <tr>
                                 <td>{{ $no }}</td>
                                 <td class="small"> {{ $ib->nip }}  
-                                    <div>{{ $ib->detPeg->News_ID }}</div>
+                                    <div class="text-info">{{ $ib->detPeg->News_ID }}</div>
                                    
                                 </td>
                                 <td class="small"> {{ $ib->detPeg->NAMA }}</td>
                                 <td class="small">
                                     
-                                    @if($ib->detInd->id_jenis_jabatan==1)
+                                    @if($ib->id_jenis_jabatan==1)
                                         JPT
-                                    @elseif ($ib->detInd->id_jenis_jabatan==2)
+                                    @elseif ($ib->id_jenis_jabatan==2)
                                         Administrator
-                                    @elseif ($ib->detInd->id_jenis_jabatan==3)
+                                    @elseif ($ib->id_jenis_jabatan==3)
                                         Pengawas
-                                    @elseif ($ib->detInd->id_jenis_jabatan==4)
+                                    @elseif ($ib->id_jenis_jabatan==4)
                                         Pelaksana
-                                    @elseif ($ib->detInd->id_jenis_jabatan==5)
+                                    @elseif ($ib->id_jenis_jabatan==5)
                                         Fungsional
                                     @else
                                         -
                                     @endif
                                     
                                 </td>
-                                <td class="small">{{ $ib->detInd->jabatan }}  </td>
-                                <td class="small"> {{ $ib->detInd->nama_instansi }}</td>
+                                <td class="small">{{ strtoupper($ib->detPeg->JABATAN) }}  </td>
+                                <td class="small"> {{ strtoupper($ib->detPeg->Instansi) }}</td>
                                 <td class="small text-center">
                                    {{-- <div>{{ $ib->data_talentabox }}</div>  --}}
                                    <?php

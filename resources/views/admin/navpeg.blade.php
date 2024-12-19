@@ -76,7 +76,7 @@
                                 <tbody>
                                     @foreach ($navs as $nav)
                                     <tr>
-                                        <td>{{ $nav->id }}</td>
+                                        <td>{{ $nav->nourut }}</td>
                                         <td>{{ $nav->nama_navigasi }}</td>
                                         <td>
                                             @if($nav->status==1)

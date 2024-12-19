@@ -283,7 +283,18 @@ class SiteController extends Controller
         $datakomp = DataKompetensi::where('nip',$bio->nip)->first();
         //skj
         $skj = Reflevelkom::where('leveljab',$datakomp->levelskj)->first();
-         
+        $datakomp = DataKompetensi::where('nip',$nip)->first();
+        //leveljab
+        $reflevkom = Reflevelkom::where('leveljab',$datakomp->levelskj)->first();
+        $desk1 = RefSKJ::where('no_komp',1)->where('level',$datakomp->nilai_integritas)->first(); 
+        $desk2 = RefSKJ::where('no_komp',2)->where('level',$datakomp->nilai_kerjasama)->first(); 
+        $desk3 = RefSKJ::where('no_komp',3)->where('level',$datakomp->nilai_komunikasi)->first(); 
+        $desk4 = RefSKJ::where('no_komp',4)->where('level',$datakomp->nilai_orientasi)->first(); 
+        $desk5 = RefSKJ::where('no_komp',5)->where('level',$datakomp->nilai_pelayanan)->first(); 
+        $desk6 = RefSKJ::where('no_komp',6)->where('level',$datakomp->nilai_pengembangan)->first(); 
+        $desk7 = RefSKJ::where('no_komp',7)->where('level',$datakomp->nilai_perubahan)->first(); 
+        $desk8 = RefSKJ::where('no_komp',8)->where('level',$datakomp->nilai_keputusan)->first(); 
+        $desk9 = RefSKJ::where('no_komp',9)->where('level',$datakomp->nilai_perekat)->first();  
 
           return view('site/sarankembang_asn',[
             'bio'         => $bio,
@@ -292,6 +303,15 @@ class SiteController extends Controller
             'indi'        => $indi,
             'datak'       => $datakomp,
             'stk'         => $skj,
+            'desk1'       => $desk1,
+            'desk2'       => $desk2,
+            'desk3'       => $desk3,
+            'desk4'       => $desk4,
+            'desk5'       => $desk5,
+            'desk6'       => $desk6,
+            'desk7'       => $desk7,
+            'desk8'       => $desk8,
+            'desk9'       => $desk9,
             
             
         ]);

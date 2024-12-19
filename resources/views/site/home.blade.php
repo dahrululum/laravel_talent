@@ -21,8 +21,8 @@
              
 
                  
-                <div class="row mt-2">
-                  <div class="col-lg-8">
+                <div class="row mt-2 ">
+                  <div class="col-lg-8 p-2">
                     {{-- <p>{{ $bio->detPeg }}</p> --}}
                     <div class="row border-bottom">
                       <div class="col-md-3 bg-info">Nama Lengkap</div>
@@ -60,14 +60,15 @@
                       </div>
                       
                     </div>
-                    {{-- <p class="card-text">
-                      Portal Sistem Informasi Layanan Aspirasi  Pengaduan Pelayanan Publik secara Online dan Responsif (SILAPOR) merupakan sarana bagi masyarakat Provinsi Kepulauan Bangka Belitung dalam menyampaikan aspirasi, pengaduan, masukan dan saran bagi Pemerintah Daerah agar terwujudnya Tata Kepemerintahan yang Baik.
-                    </p> --}}
                    
                       
                   </div>
-                  <div class="col-lg-4 text-center">
-                    <img src="{{ url ('images/logo_asnprimadona.png') }}" class="img-box col-lg-8 " >
+                  <div class="col-lg-2 text-center bg-light">
+                    <?php 
+                       $urlfoto="https://simadig.babelprov.go.id/web/uploads/pegawai/berkas-foto/kecil/";
+
+                    ?>
+                    <img src="{{ $urlfoto.$bio->detPeg->Berkas_foto }}" class="img-box  " style="width:100px;" >
                   </div>
 
               </div>
